@@ -12,8 +12,12 @@ import contact.entity.Department;
 @Repository
 public class DepartmentDao implements Dao<Department, String> {
 
-	@Autowired
+	
 	private SessionFactory sessionFactory;
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 
 	public void create(Department entity) {
 		sessionFactory.getCurrentSession().save(entity);

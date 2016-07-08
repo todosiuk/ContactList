@@ -12,8 +12,11 @@ import contact.entity.Store;
 @Repository
 public class StoreDao implements Dao<Store, String> {
 
-	@Autowired
 	private SessionFactory sessionFactory;
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 
 	public void create(Store entity) {
 		sessionFactory.getCurrentSession().save(entity);
