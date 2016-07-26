@@ -4,6 +4,9 @@
 	<groupId>com.epic</groupId>
 	<artifactId>ContactList</artifactId>
 	<packaging>war</packaging>
+	<properties>
+		<failOnMissingWebXml>false</failOnMissingWebXml>
+	</properties>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ContactList Maven Webapp</name>
 	<url>http://maven.apache.org</url>
@@ -112,19 +115,30 @@
 		</dependency>
 
 	</dependencies>
+
 	<build>
 		<finalName>finalName</finalName>
-		<plugins>
-
-			<plugin>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.tomcat.maven</groupId>
+					<artifactId>tomcat8-maven-plugin</artifactId>
+					<version>3.1</version>
+					<configuration>
+						<source>1.8</source>
+						<target>1.8</target>
+					</configuration>
+				</plugin>
+				<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.1</version>
 				<configuration>
-					<source>1.8</source> <!-- yours Java version -->
-					<target>1.8</target> <!-- yours Java version -->
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
+			</plugins>
+		</pluginManagement>
 
-		</plugins>
 	</build>
 </project>
