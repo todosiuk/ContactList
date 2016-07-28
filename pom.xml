@@ -142,7 +142,7 @@
 		</pluginRepository>
 	</pluginRepositories>
 	<build>
-		<finalName>finalName</finalName>
+		<finalName>ContactList</finalName>
 		<pluginManagement>
 			<plugins>
 				<plugin>

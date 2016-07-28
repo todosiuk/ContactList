@@ -4,9 +4,9 @@
 <title>Home</title>
 </head>
 <body>
-	<div align="center">
+	
 		<h1>Home Page</h1>
 		
-	</div>
+	
 </body>
 </html>
