@@ -36,6 +36,12 @@
 			<version>1.2</version>
 		</dependency>
 
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.2</version>
+		</dependency>
+
 		<!-- JSP API -->
 		<!-- http://mvnrepository.com/artifact/javax.servlet.jsp/jsp-api -->
 		<dependency>
