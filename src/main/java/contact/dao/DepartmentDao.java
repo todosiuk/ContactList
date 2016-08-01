@@ -2,6 +2,7 @@ package contact.dao;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,6 @@ import contact.entity.Department;
 @Repository
 public class DepartmentDao implements Dao<Department, String> {
 
-	
 	private SessionFactory sessionFactory;
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
@@ -42,7 +42,7 @@ public class DepartmentDao implements Dao<Department, String> {
 	}
 
 	public Query<Department> getDepartmentFromId(Integer id) {
-		return sessionFactory.getCurrentSession().createQuery("select * fom department where id = ?");
+		return sessionFactory.getCurrentSession().createQuery("select * from department where id = ?");
 	}
 
 }

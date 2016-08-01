@@ -12,4 +12,5 @@ public interface ServiceInt<T, Id extends Serializable> {
 	public void update(T entity);
 
 	public void delete(Integer id);
+
 }
