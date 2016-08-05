@@ -1,5 +1,6 @@
 package contact.dao;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import contact.entity.Department;
+import contact.entity.Store;
 
 @Repository
 public class DepartmentDao implements Dao<Department, String> {
@@ -20,6 +22,7 @@ public class DepartmentDao implements Dao<Department, String> {
 	}
 
 	public void create(Department entity) {
+		
 		sessionFactory.getCurrentSession().save(entity);
 
 	}
@@ -43,6 +46,12 @@ public class DepartmentDao implements Dao<Department, String> {
 
 	public Query<Department> getDepartmentFromId(Integer id) {
 		return sessionFactory.getCurrentSession().createQuery("select * from department where id = ?");
+	}
+
+	@Override
+	public Collection getDepartmentsForStore(Store store) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

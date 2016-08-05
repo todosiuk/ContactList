@@ -1,5 +1,6 @@
 package contact.service;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,12 @@ public class StoreService implements ServiceInt<Store, String> {
 	@Transactional
 	public Store getStoreFromId(Integer id) {
 		return (Store) storeDao.getStoreFromId(id);
+	}
+
+	@Override
+	public Collection getDepartmentsForStore(Store store) {
+		// TODO Auto-generated method stub
+		return storeDao.getDepartmentsForStore(store);
 	}
 
 }

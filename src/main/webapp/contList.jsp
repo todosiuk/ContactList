@@ -10,12 +10,19 @@
 	<div align="center">
 		<h1>Contact List</h1>
 		<table border="1">
-			<th>No</th>
-			<th>Dept No</th>
-			<th>Dept Name</th>
+			<th>Маркет</th>
+			<th>Отдел</th>
 			<th>e-mail</th>
-			<th>post</th>
-			<th>phone</th>
+			<th>Должность</th>
+			<th>Телефон</th>
+			<c:forEach var="dept" items="${Department}">
+				<tr>
+
+					<td>$(dept.nameDepartment)</td>
+					<td>${dept.post}</td>
+					<td>${dept.email}</td>
+				</tr>
+			</c:forEach>
 
 
 		</table>
