@@ -34,6 +34,14 @@ public class Department {
 	@ManyToOne(cascade = { CascadeType.REFRESH }, fetch = FetchType.LAZY)
 	@JoinColumn(name = "fk_department_store_idx")
 	private Store store;
+	
+	public Department(){
+	}
+	
+	public Department(Integer name, Store store){
+		this.nameDepartment = name;
+		this.store = store;
+	}
 
 	public Integer getId() {
 		return id;

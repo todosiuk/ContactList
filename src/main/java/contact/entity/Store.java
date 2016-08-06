@@ -1,5 +1,6 @@
 package contact.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -7,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -16,15 +18,24 @@ import javax.persistence.Table;
 public class Store {
 
 	@Id 
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "id") 
-	@GeneratedValue 
 	private Integer id;
 
 	@Column(name = "city")
 	private String city;
-
+	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "store")
-	private List<Department> depList;
+	private List<Department> depList = new ArrayList<Department>();
+	
+	public Store(){
+	}
+	
+	public Store(String city, Integer id){
+		super();
+		this.city = city;
+		this.id = id;
+	}
 
 	public Integer getId() {
 		return id;
