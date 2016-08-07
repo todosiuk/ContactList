@@ -12,34 +12,30 @@ import contact.entity.Department;
 import contact.entity.Store;
 
 @Service
+@Transactional
 public class DepartmentService implements ServiceInt<Department, String> {
 
 	@Autowired
 	private DepartmentDao departmentDao;
 
-	@Transactional
 	public void create(Department entity) {
 		departmentDao.create(entity);
 	}
 
-	@Transactional
 	public List<Department> read() {
 		return departmentDao.read();
 	}
 
-	@Transactional
 	public void update(Department entity) {
 		departmentDao.update(entity);
 
 	}
 
-	@Transactional
 	public void delete(Integer id) {
 		departmentDao.delete(id);
 
 	}
 
-	@Transactional
 	public Department getDepartmentFromId(Integer id) {
 		return (Department) departmentDao.getDepartmentFromId(id);
 	}

@@ -3,18 +3,23 @@ package contact.dao;
 import java.util.Collection;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import contact.entity.Department;
 import contact.entity.Store;
 
 @Repository
+@Transactional
 public class DepartmentDao implements Dao<Department, String> {
 
+	@Autowired
 	private SessionFactory sessionFactory;
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
@@ -22,7 +27,7 @@ public class DepartmentDao implements Dao<Department, String> {
 	}
 
 	public void create(Department entity) {
-		
+
 		sessionFactory.getCurrentSession().save(entity);
 
 	}

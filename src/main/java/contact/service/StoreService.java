@@ -11,34 +11,30 @@ import contact.dao.StoreDao;
 import contact.entity.Store;
 
 @Service
+@Transactional
 public class StoreService implements ServiceInt<Store, String> {
 
 	@Autowired
 	private StoreDao storeDao;
 
-	@Transactional
 	public void create(Store entity) {
 		storeDao.create(entity);
 	}
 
-	@Transactional
 	public List<Store> read() {
 		return storeDao.read();
 	}
 
-	@Transactional
 	public void update(Store entity) {
 		storeDao.update(entity);
 
 	}
 
-	@Transactional
 	public void delete(Integer id) {
 		storeDao.delete(id);
 
 	}
 
-	@Transactional
 	public Store getStoreFromId(Integer id) {
 		return (Store) storeDao.getStoreFromId(id);
 	}
