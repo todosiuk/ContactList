@@ -8,17 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import contact.dao.StoreDao;
+import contact.dao.Dao;
 import contact.entity.Store;
-import contact.service.StoreService;
-import junit.framework.Assert;
 
-@ContextConfiguration(locations = { "/dao-cfg.xml", "/data-source-hiber-cfg.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath:/dao-cfg.xml", "/data-source-hiber-cfg.xml", "/spring-mvc-servlet.xml"})
 public class StoreDaoCreateTest {
 
 	@Autowired
-	private StoreDao storeDao;
+	private Dao<Store, ?> storeDao;
 
 	@Test
 	public final void testCreate() {

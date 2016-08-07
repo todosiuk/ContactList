@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import contact.dao.Dao;
 import contact.dao.DepartmentDao;
 import contact.entity.Department;
 import contact.entity.Store;
@@ -16,7 +17,7 @@ import contact.entity.Store;
 public class DepartmentService implements ServiceInt<Department, String> {
 
 	@Autowired
-	private DepartmentDao departmentDao;
+	private Dao<Department, ?> departmentDao;
 
 	public void create(Department entity) {
 		departmentDao.create(entity);
@@ -37,7 +38,7 @@ public class DepartmentService implements ServiceInt<Department, String> {
 	}
 
 	public Department getDepartmentFromId(Integer id) {
-		return (Department) departmentDao.getDepartmentFromId(id);
+		return (Department) ((DepartmentDao) departmentDao).getDepartmentFromId(id);
 	}
 
 	@Override

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import contact.dao.Dao;
 import contact.dao.StoreDao;
 import contact.entity.Store;
 
@@ -15,7 +16,7 @@ import contact.entity.Store;
 public class StoreService implements ServiceInt<Store, String> {
 
 	@Autowired
-	private StoreDao storeDao;
+	private Dao<Store, ?> storeDao;
 
 	public void create(Store entity) {
 		storeDao.create(entity);
@@ -36,7 +37,7 @@ public class StoreService implements ServiceInt<Store, String> {
 	}
 
 	public Store getStoreFromId(Integer id) {
-		return (Store) storeDao.getStoreFromId(id);
+		return (Store) ((StoreDao) storeDao).getStoreFromId(id);
 	}
 
 	@Override

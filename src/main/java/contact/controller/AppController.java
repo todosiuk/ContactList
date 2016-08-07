@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import contact.entity.Department;
 import contact.entity.Store;
 import contact.service.DepartmentService;
+import contact.service.ServiceInt;
 import contact.service.StoreService;
 
 @Controller
@@ -19,9 +20,9 @@ import contact.service.StoreService;
 public class AppController {
 
 	@Autowired
-	private DepartmentService departmentService;
+	private ServiceInt<Department, ?> departmentService;
 	@Autowired
-	private StoreService storeService;
+	private ServiceInt<Store, ?> storeService;
 
 	@RequestMapping("/listdepartments")
 	public String listDepartments(Map<String, Object> map) {
