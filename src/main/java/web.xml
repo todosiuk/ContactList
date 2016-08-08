@@ -26,9 +26,9 @@ id="Web_App_1" version="3.1">
    <context-param>
        <param-name>contextConfigLocation</param-name>
        <param-value>
-          /WEB-INF/data-source-hiber-cfg.xml
-          /WEB-INF/dao-cfg.xml
-          /WEB-INF/transaction-cfg.xml
+          data-source-hiber-cfg.xml
+          <!-- dao-cfg.xml-->
+         <!--  transaction-cfg.xml-->
        
         </param-value>        
    </context-param>

@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,11 +14,12 @@ import contact.dao.DepartmentDao;
 import contact.entity.Department;
 import contact.entity.Store;
 
-@Service
+@Component
 @Transactional
 public class DepartmentService implements ServiceInt<Department, String> {
 
 	@Autowired
+	@Qualifier("departmentDao")
 	private Dao<Department, ?> departmentDao;
 
 	public void create(Department entity) {
@@ -45,6 +48,14 @@ public class DepartmentService implements ServiceInt<Department, String> {
 	public Collection getDepartmentsForStore(Store store) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public Dao<Department, ?> getDepartmentDao() {
+		return departmentDao;
+	}
+
+	public void setDepartmentDao(DepartmentDao departmentDao) {
+		this.departmentDao = departmentDao;
 	}
 
 }

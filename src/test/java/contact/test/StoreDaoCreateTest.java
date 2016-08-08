@@ -12,7 +12,7 @@ import contact.dao.Dao;
 import contact.entity.Store;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:/dao-cfg.xml", "/data-source-hiber-cfg.xml", "/spring-mvc-servlet.xml"})
+@ContextConfiguration(locations = {"classpath:/data-source-hiber-cfg.xml", "/spring-mvc-servlet.xml"})
 public class StoreDaoCreateTest {
 
 	@Autowired

@@ -9,13 +9,14 @@ import javax.annotation.Resource;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import contact.entity.Department;
 import contact.entity.Store;
 
-@Repository
+@Component
 @Transactional
 public class StoreDao implements Dao<Store, String> {
 
@@ -32,7 +33,7 @@ public class StoreDao implements Dao<Store, String> {
 
 	public List<Store> read() {
 
-		return sessionFactory.getCurrentSession().createQuery("from store").list();
+		return sessionFactory.getCurrentSession().createQuery("from Store").list();
 	}
 
 	public void update(Store entity) {
@@ -50,7 +51,7 @@ public class StoreDao implements Dao<Store, String> {
 
 	public Query<Store> getStoreFromId(Integer id) {
 		// String sql = "select * from store where id=?";
-		return sessionFactory.getCurrentSession().createQuery("select * from store where id=?");
+		return sessionFactory.getCurrentSession().createQuery("select * from Store where id=?");
 	}
 
 	@Override
