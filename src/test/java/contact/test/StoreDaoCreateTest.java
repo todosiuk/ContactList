@@ -2,6 +2,7 @@ package contact.test;
 
 import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import contact.dao.Dao;
 import contact.entity.Store;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:/data-source-hiber-cfg.xml", "/spring-mvc-servlet.xml"})
+@ContextConfiguration(locations = { "classpath:/data-source-hiber-cfg.xml", "/spring-mvc-servlet.xml" })
 public class StoreDaoCreateTest {
 
 	@Autowired
@@ -20,9 +21,10 @@ public class StoreDaoCreateTest {
 
 	@Test
 	public final void testCreate() {
-		Store storeTest = new Store("Kyiv", 0);
+		Store storeTest = new Store("Kyiv", 1);
 		storeDao.create(storeTest);
 		List<Store> store = storeDao.read();
+		Assert.assertEquals(storeTest.getCity(), store.get(1).getCity());
 
 	}
 

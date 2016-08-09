@@ -58,7 +58,7 @@ public class StoreDao implements Dao<Store, String> {
 	public Collection getDepartmentsForStore(Store store) {
 		List departments = new ArrayList<Department>();
 		Integer storeId = store.getId();
-		Query query = sessionFactory.getCurrentSession().createQuery("from department where store_idstore = :idstore")
+		Query query = sessionFactory.getCurrentSession().createQuery("from Department where store_idstore = :idstore")
 				.setInteger("idstore", storeId);
 		return departments = query.list();
 

@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 public class Department {
 
 	@Id
-	@Column(name = "id")
+	@Column(name = "iddepartment")
 	@GeneratedValue
 	private Integer id;
 
