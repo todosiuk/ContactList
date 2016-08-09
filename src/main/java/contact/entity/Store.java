@@ -34,7 +34,7 @@ public class Store {
 	public Store(){
 	}
 	
-	public Store(String city, Integer id){
+	public Store(String city){
 		super();
 		this.city = city;
 		this.id = id;

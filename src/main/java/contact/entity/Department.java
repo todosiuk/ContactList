@@ -35,7 +35,7 @@ public class Department {
 	private String phone;
 
 	@ManyToOne(cascade = { CascadeType.REFRESH }, fetch = FetchType.LAZY)
-	@JoinColumn(name = "fk_department_store_idx")
+	@JoinColumn(name = "store_idstore")
 	private Store store;
 	
 	public Department(){
