@@ -49,9 +49,11 @@ public class StoreDao implements Dao<Store, String> {
 
 	}
 
-	public Query<Store> getStoreFromId(Integer id) {
-		// String sql = "select * from store where id=?";
-		return sessionFactory.getCurrentSession().createQuery("select * from Store where id=?");
+	public List<Store> getStoreFromId(Integer id) {
+		 List store = sessionFactory.getCurrentSession().createQuery("from Store where id=:id").setInteger("id", id).list();
+		 return store;
+		//return (List<Store>) sessionFactory.getCurrentSession().createNamedQuery("from Store where id=:id")
+			//	.setString(1, "id").list();
 	}
 
 	@Override

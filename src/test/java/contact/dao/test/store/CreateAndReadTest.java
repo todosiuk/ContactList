@@ -1,4 +1,4 @@
-package contact.test;
+package contact.dao.test.store;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ import contact.entity.Store;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/data-source-hiber-cfg.xml", "/spring-mvc-servlet.xml" })
-public class StoreDaoCreateAndReadTest {
+public class CreateAndReadTest {
 
 	@Autowired
 	private Dao<Store, ?> storeDao;
@@ -25,6 +25,8 @@ public class StoreDaoCreateAndReadTest {
 		storeDao.create(storeTest);
 		List<Store> store = storeDao.read();
 		Assert.assertEquals(storeTest.getCity(), store.get(0).getCity());
+		Integer id = storeTest.getId();
+		storeDao.delete(id);
 
 	}
 

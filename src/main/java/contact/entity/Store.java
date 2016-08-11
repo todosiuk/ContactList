@@ -15,26 +15,31 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
-@Entity 
-@Table(name = "store") 
+@Entity
+@Table(name = "store")
 @Component
 public class Store {
 
-	@Id 
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "idstore") 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "idstore")
 	private Integer id;
 
 	@Column(name = "city")
 	private String city;
-	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "store")
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "store")
 	private List<Department> depList = new ArrayList<Department>();
-	
-	public Store(){
+
+	public Store() {
 	}
-	
-	public Store(String city){
+
+	public Store(String city) {
+		super();
+		this.city = city;
+	}
+
+	public Store(String city, int id) {
 		super();
 		this.city = city;
 		this.id = id;

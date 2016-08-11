@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,10 +20,10 @@ public class Department {
 
 	@Id
 	@Column(name = "iddepartment")
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(name = "nameDepartment")
+	@Column(name = "name")
 	private Integer nameDepartment;
 
 	@Column(name = "email")
@@ -41,6 +42,15 @@ public class Department {
 	public Department(){
 	}
 	
+	public Department(Integer nameDepartment, String email, String post, String phone, Store store) {
+		super();
+		this.nameDepartment = nameDepartment;
+		this.email = email;
+		this.post = post;
+		this.phone = phone;
+		this.store = store;
+	}
+
 	public Department(Integer name, Store store){
 		this.nameDepartment = name;
 		this.store = store;

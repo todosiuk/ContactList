@@ -1,4 +1,4 @@
-package contact.test;
+package contact.dao.test.store;
 
 import static org.junit.Assert.*;
 
@@ -16,7 +16,7 @@ import contact.entity.Store;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/data-source-hiber-cfg.xml", "/spring-mvc-servlet.xml" })
-public class StoreDaoUpdateTest {
+public class UpdateTest {
 
 	@Autowired
 	private Dao<Store, ?> storeDao;
@@ -29,6 +29,8 @@ public class StoreDaoUpdateTest {
 		storeDao.update(store);
 		List<Store> storeTest = storeDao.read();
 		Assert.assertEquals(storeTest.get(0).getCity(), "Kharkiv");
+		Integer id = store.getId();
+		storeDao.delete(id);
 
 	}
 

@@ -35,7 +35,7 @@ public class DepartmentDao implements Dao<Department, String> {
 
 	public List<Department> read() {
 
-		return sessionFactory.getCurrentSession().createQuery("from department").list();
+		return sessionFactory.getCurrentSession().createQuery("from Department").list();
 	}
 
 	public void update(Department entity) {
@@ -51,7 +51,7 @@ public class DepartmentDao implements Dao<Department, String> {
 	}
 
 	public Query<Department> getDepartmentFromId(Integer id) {
-		return sessionFactory.getCurrentSession().createQuery("select * from department where id = ?");
+		return sessionFactory.getCurrentSession().createQuery("select * from Department where id = ?");
 	}
 
 	@Override
