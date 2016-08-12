@@ -43,7 +43,7 @@ public class DepartmentDao implements Dao<Department, String> {
 	}
 
 	public void delete(Integer id) {
-		Department department = sessionFactory.getCurrentSession().load(Department.class, id);
+		Department department = (Department) sessionFactory.getCurrentSession().load(Department.class, id);
 		if (null != department) {
 			sessionFactory.getCurrentSession().delete(department);
 		}
@@ -60,4 +60,5 @@ public class DepartmentDao implements Dao<Department, String> {
 		return null;
 	}
 
+	
 }

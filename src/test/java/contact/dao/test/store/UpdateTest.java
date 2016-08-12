@@ -28,7 +28,7 @@ public class UpdateTest {
 		store.setCity("Kharkiv");
 		storeDao.update(store);
 		List<Store> storeTest = storeDao.read();
-		Assert.assertEquals(storeTest.get(0).getCity(), "Kharkiv");
+		assertEquals(storeTest.get(0).getCity(), "Kharkiv");
 		Integer id = store.getId();
 		storeDao.delete(id);
 

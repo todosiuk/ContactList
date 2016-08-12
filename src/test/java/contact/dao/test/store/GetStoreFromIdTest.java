@@ -29,7 +29,7 @@ public class GetStoreFromIdTest {
 		storeDao.create(store);
 		Integer id = store.getId();
 		List<Store> storeList = (List) storeDao.getStoreFromId(id);
-		Assert.assertEquals(store.getCity(), storeList.get(0).getCity());
+		assertEquals(store.getCity(), storeList.get(0).getCity());
 		storeDao.delete(id);
 
 	}

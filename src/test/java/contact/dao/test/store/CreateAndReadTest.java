@@ -1,5 +1,7 @@
 package contact.dao.test.store;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.List;
 
 import org.junit.Assert;
@@ -24,7 +26,7 @@ public class CreateAndReadTest {
 		Store storeTest = new Store("Kyiv");
 		storeDao.create(storeTest);
 		List<Store> store = storeDao.read();
-		Assert.assertEquals(storeTest.getCity(), store.get(0).getCity());
+		assertEquals(storeTest.getCity(), store.get(0).getCity());
 		Integer id = storeTest.getId();
 		storeDao.delete(id);
 
