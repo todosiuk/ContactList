@@ -1,4 +1,4 @@
-package contact.dao.test.store;
+package contact.dao.test;
 
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;

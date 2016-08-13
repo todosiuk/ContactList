@@ -50,8 +50,10 @@ public class DepartmentDao implements Dao<Department, String> {
 
 	}
 
-	public Query<Department> getDepartmentFromId(Integer id) {
-		return sessionFactory.getCurrentSession().createQuery("select * from Department where id = ?");
+	public List<Department> getDepartmentFromId(Integer id) {
+		List department = sessionFactory.getCurrentSession().createQuery("from Department where id = :id")
+				.setInteger("id", id).list();
+		return department;
 	}
 
 	@Override
@@ -60,5 +62,4 @@ public class DepartmentDao implements Dao<Department, String> {
 		return null;
 	}
 
-	
 }

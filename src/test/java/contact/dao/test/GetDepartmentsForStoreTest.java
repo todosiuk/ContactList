@@ -1,4 +1,4 @@
-package contact.dao.test.store;
+package contact.dao.test;
 
 import static org.junit.Assert.*;
 
@@ -18,25 +18,23 @@ import contact.entity.Store;
 public class GetDepartmentsForStoreTest {
 
 	@Autowired
-	private Dao<Store,?> storeDao;
-	
+	private Dao<Store, ?> storeDao;
+
 	@Autowired
 	private Dao<Department, ?> departmentDao;
-	
+
 	@Test
 	public final void testGetDepartmentsForStore() {
 		Store store = new Store("Toronto");
 		storeDao.create(store);
+		
 		Department department = new Department(10, "dep@ukr.net", "financier", "066-58-965-84", store);
 		departmentDao.create(department);
-		
+
 		assertEquals(store.getId(), department.getStore().getId());
-		
-		Integer id = store.getId();
-		Integer idDep = department.getId();
-		departmentDao.delete(idDep);
-		storeDao.delete(id);
+
+		departmentDao.delete(department.getId());
+		storeDao.delete(store.getId());
 	}
-	
 
 }

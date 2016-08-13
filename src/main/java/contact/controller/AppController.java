@@ -1,5 +1,6 @@
 package contact.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import contact.entity.Department;
 import contact.entity.Store;
@@ -45,10 +48,18 @@ public class AppController {
 	}
 
 	@RequestMapping("/addstore")
-	public String addStore(@ModelAttribute("store") Store store, BindingResult result) {
-		storeService.create(store);
-		return ("addstore");
-
+	public ModelAndView addStore(@ModelAttribute("store") Store store) {
+		//String city = store.getCity();
+		//List<Store> storeList = storeService.read();
+		//for (Store s : storeList) {
+			//if (s.getCity().equals(city)) {
+				//return new ModelAndView("redirect:/error");
+		//	} else {
+				storeService.create(store);
+			//}
+		//}
+		//;
+		return new ModelAndView("redirect:/save");
 	}
 
 	@RequestMapping("/deletedepartment/{departmentId}")
