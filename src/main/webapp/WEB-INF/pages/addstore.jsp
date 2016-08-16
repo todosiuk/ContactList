@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -6,13 +7,13 @@
 <title>Новый магазин</title>
 </head>
 <body>
-	<form action ="addstore">
+	<form action="addstore">
 		<center>
 			<table cellpadding=4 cellspacing=2 border=0>
 				<th bgcolor="#CCCCFF" colspan=2><font size=5>Новый
 						магазин</font></th>
 				<tr bgcolor="#c8d8f8">
-					<td valign=top>Город* <input type="text" name="city" value=""
+					<td valign=top>Город* <input type="text" name="addstore" value=""
 						size=15 maxlenght=30></td>
 				</tr>
 				<tr bgcolor="#c8d8f8">
