@@ -9,7 +9,7 @@
 http://www.springframework.org/schema/mvc/spring-mvc.xsd
 http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-	<mvc:annotation-driven />
+	
 	<tx:annotation-driven proxy-target-class="true"
 		transaction-manager="transactionManager" />
 

@@ -13,16 +13,18 @@ import contact.entity.Store;
 import contact.service.ServiceInt;
 
 @Controller
+@RequestMapping("/")
 public class AppController {
 
 	@Autowired
 	private ServiceInt<Store, ?> storeService;
 
-	@RequestMapping("/empform")
-	public ModelAndView showForm() {
-		return new ModelAndView("empform", "command", new Store());
+	@RequestMapping(value="/empform")
+	public String showForm() {
+		return "redirect:empform";//new ModelAndView("empform", "command", new Store());
 	}
 
+	@RequestMapping("/create")
 	public ModelAndView createStore(@ModelAttribute("store") Store store) {
 		storeService.create(store);
 		return new ModelAndView("redirect:/viewemp");
