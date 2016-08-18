@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,7 +13,8 @@ import contact.dao.Dao;
 import contact.dao.StoreDao;
 import contact.entity.Store;
 
-@Service
+
+@Component("storeService")
 @Transactional
 public class StoreService implements ServiceInt<Store, String> {
 

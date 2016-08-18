@@ -4,46 +4,51 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
-import org.junit.Assert;
+import org.hibernate.SessionFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import contact.dao.Dao;
 import contact.entity.Department;
 import contact.entity.Store;
+import contact.service.DepartmentService;
+import contact.service.ServiceInt;
+import contact.service.StoreService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:/data-source-hiber-cfg.xml", "/spring-mvc-servlet.xml" })
+@ContextConfiguration(locations = { "classpath:/data-source-hiber-cfg.xml"})
 public class CreateAndReadTest {
 
 	@Autowired
-	private Dao<Store, ?> storeDao;
+	@Qualifier(value="storeService")
+	private StoreService storeService;
 
 	@Autowired
-	private Dao<Department, ?> departmentDao;
-
+	@Qualifier(value="departmentService")
+	private DepartmentService departmentService;
+	
 	@Test
 	public final void testCreateAndRead() {
 		Store store = new Store("Kyiv");
-		storeDao.create(store);
+		storeService.create(store);
 		
 		Department dep = new Department(10, "dep@ukt.kj", "driver", "055-226-56-97", store);
-		departmentDao.create(dep);
+		departmentService.create(dep);
 
 		assertNotNull(store);
 		assertNotNull(dep);
 
-		List<Store> storeList = storeDao.read();
-		List<Department> depList = departmentDao.read();
+		List<Store> storeList = storeService.read();
+		List<Department> depList = departmentService.read();
 
 		assertNotNull(depList);
 		assertNotNull(storeList);
 
-		departmentDao.delete(dep.getId());
-		storeDao.delete(store.getId());
+		departmentService.delete(dep.getId());
+		storeService.delete(store.getId());
 
 	}
 

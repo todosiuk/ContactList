@@ -14,7 +14,7 @@ import contact.dao.DepartmentDao;
 import contact.entity.Department;
 import contact.entity.Store;
 
-@Service
+@Component("departmentService")
 @Transactional
 public class DepartmentService implements ServiceInt<Department, String> {
 

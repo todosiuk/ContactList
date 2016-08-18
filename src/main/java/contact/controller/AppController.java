@@ -8,32 +8,37 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import contact.entity.Store;
 import contact.service.ServiceInt;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping(value="/")
 public class AppController {
 
 	@Autowired
 	private ServiceInt<Store, ?> storeService;
 
-	@RequestMapping(value="/empform")
-	public String showForm() {
-		return "redirect:empform";//new ModelAndView("empform", "command", new Store());
+	@RequestMapping(value="/store")
+	public ModelAndView store() {
+		return new ModelAndView("formstore", "command", new Store());
 	}
-
-	@RequestMapping("/create")
-	public ModelAndView createStore(@ModelAttribute("store") Store store) {
+	
+	@RequestMapping(value="/createStore", method = RequestMethod.POST)
+	public ModelAndView createStore(@ModelAttribute("viewstore") Store store) {
 		storeService.create(store);
-		return new ModelAndView("redirect:/viewemp");
+		return new ModelAndView("redirect:/viewstore");
+	}
+	
+	@RequestMapping(value="/viewstore" ) 
+	public ModelAndView viewStore(){
+		List<Store> list = storeService.read();
+		return new ModelAndView("viewstore", "list", list);
 	}
 
-	@RequestMapping("/viewemp")  
-	public ModelAndView viewemp() {
-		List<Store> list = storeService.read();
-		return new ModelAndView("viewemp", "list", list);
-	}
+	
+
+	
 
 }
