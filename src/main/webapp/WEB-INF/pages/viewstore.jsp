@@ -6,22 +6,26 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Список магазинов</title>
+<title>Insert title here</title>
 </head>
 <body>
-	<h1>Список магазинов</h1>
+	<h1>Store List</h1>
 	<table border="2" width="70%" cellpadding="2">
 		<tr>
 			<th>Id</th>
-			<th>Город</th>
-			<c:forEach var="store" items="${list}">
-				<tr>
-					<td>${store.id}</td>
-					<td>${store.city}</td>
-				</tr>
-			</c:forEach>
-		</tr>
-	</table>
+			<th>City</th>
 
+		</tr>
+		<c:forEach var="store" items="${list}">
+			<tr>
+				<td>${store.id}</td>
+				<td>${store.city}</td>
+				<td><a href="editstore/${store.id}">Edit</a></td>
+				<td><a href="deletestore/${store.id}.id}">Delete</a></td>
+			</tr>
+		</c:forEach>
+	</table>
+	<br />
+	<a href="storeform">Add New Store</a>
 </body>
 </html>

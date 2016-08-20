@@ -14,7 +14,7 @@ import contact.dao.StoreDao;
 import contact.entity.Store;
 
 
-@Component("storeService")
+@Service("storeService")
 @Transactional
 public class StoreService implements ServiceInt<Store, String> {
 

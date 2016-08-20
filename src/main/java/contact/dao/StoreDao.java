@@ -20,7 +20,7 @@ import contact.entity.Store;
 @Transactional
 public class StoreDao implements Dao<Store, String> {
 
-
+	@Autowired
 	private SessionFactory sessionFactory;
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
