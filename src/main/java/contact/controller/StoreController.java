@@ -21,7 +21,7 @@ import contact.service.ServiceInt;
 import contact.service.StoreService;
 
 @Controller
-public class AppController {
+public class StoreController {
 
 	@Autowired
 	private StoreService storeService;

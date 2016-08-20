@@ -21,7 +21,7 @@
 				<td>${store.id}</td>
 				<td>${store.city}</td>
 				<td><a href="editstore/${store.id}">Edit</a></td>
-				<td><a href="deletestore/${store.id}.id}">Delete</a></td>
+				<td><a href="deletestore/${store.id}">Delete</a></td>
 			</tr>
 		</c:forEach>
 	</table>
