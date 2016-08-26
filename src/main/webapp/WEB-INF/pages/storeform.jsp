@@ -16,7 +16,7 @@
 				<td><form:input path="city" /></td>
 			</tr>
 			<td></td>
-			<td><input type="submit" value="Save" /></td>
+			<td><input type="submit" value="Сохранить" /></td>
 			</tr>
 		</table>
 	</form:form>

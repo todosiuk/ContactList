@@ -16,15 +16,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import contact.entity.Department;
 import contact.entity.Store;
+import contact.service.DepartmentService;
 import contact.service.ServiceInt;
 import contact.service.StoreService;
 
 @Controller
-public class StoreController {
+public class AppController {
 
 	@Autowired
 	private StoreService storeService;
+
+	@Autowired
+	private DepartmentService departmentService;
 
 	@RequestMapping("/storeform")
 	public ModelAndView showform() {
@@ -59,5 +65,15 @@ public class StoreController {
 	public ModelAndView delete(@PathVariable int id) {
 		storeService.delete(id);
 		return new ModelAndView("redirect:/viewstore");
+	}
+
+	@RequestMapping("/departmentform")
+	public ModelAndView showdepform() {
+		return new ModelAndView("departmentform", "command", new Department());
+	}
+
+	public ModelAndView createdep(@ModelAttribute("department") Department department) {
+		departmentService.create(department);
+		return new ModelAndView("redirect:/viewdep");
 	}
 }
