@@ -22,8 +22,8 @@ public class DepartmentService implements ServiceInt<Department, String> {
 	@Qualifier("departmentDao")
 	private Dao<Department, ?> departmentDao;
 
-	public void create(Department entity) {
-		departmentDao.create(entity);
+	public void create(Department entity, Integer id) {
+		departmentDao.create(entity, id);
 	}
 
 	public List<Department> read() {

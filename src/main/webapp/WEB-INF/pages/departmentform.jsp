@@ -13,7 +13,7 @@
 		<table>
 			<tr>
 				<td>Маркет</td>
-				<td><form:input path="store" /></td>
+				<td><form:input path="id" /></td>
 			</tr>
 			<tr>
 				<td>Отдел</td>

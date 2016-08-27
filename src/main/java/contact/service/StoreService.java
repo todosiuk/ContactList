@@ -22,8 +22,8 @@ public class StoreService implements ServiceInt<Store, String> {
 	@Qualifier("storeDao")
 	private Dao<Store, ?> storeDao;
 
-	public void create(Store entity) {
-		storeDao.create(entity);
+	public void create(Store entity, Integer id) {
+		storeDao.create(entity, null);
 	}
 
 	public List<Store> read() {

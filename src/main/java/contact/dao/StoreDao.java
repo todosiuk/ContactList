@@ -27,7 +27,7 @@ public class StoreDao implements Dao<Store, String> {
 		this.sessionFactory = sessionFactory;
 	}
 
-	public void create(Store entity) {
+	public void create(Store entity, Integer id) {
 		sessionFactory.getCurrentSession().save(entity);
 	}
 

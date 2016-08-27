@@ -10,7 +10,7 @@ import contact.entity.Store;
 @Component
 public interface Dao<T, Id extends Serializable> {
 
-	public void create(T entity);
+	public void create(T entity,Integer id);
 
 	public List<T> read();
 

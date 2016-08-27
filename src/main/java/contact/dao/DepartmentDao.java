@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -27,9 +28,10 @@ public class DepartmentDao implements Dao<Department, String> {
 		this.sessionFactory = sessionFactory;
 	}
 
-	public void create(Department entity) {
-
-		sessionFactory.getCurrentSession().save(entity);
+	public void create(Department department, Integer id) {
+		Store store = sessionFactory.getCurrentSession().load(Store.class, id);
+		department.setStore(store);
+		sessionFactory.getCurrentSession().save(department);
 
 	}
 

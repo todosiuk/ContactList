@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import contact.entity.Department;
@@ -39,7 +40,7 @@ public class AppController {
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public ModelAndView create(@ModelAttribute("store") Store store) {
-		storeService.create(store);
+		storeService.create(store, null);
 		return new ModelAndView("redirect:/viewstore");
 	}
 
@@ -72,8 +73,17 @@ public class AppController {
 		return new ModelAndView("departmentform", "command", new Department());
 	}
 
-	public ModelAndView createdep(@ModelAttribute("department") Department department) {
-		departmentService.create(department);
+	@RequestMapping("/createdepartment")
+	public ModelAndView createdep(@RequestParam("id") Integer id, 
+            @ModelAttribute("department") Department department) {
+		departmentService.create(department, id);
 		return new ModelAndView("redirect:/viewdep");
 	}
+
+	@RequestMapping("/viewdep")
+	public ModelAndView viewdep() {
+		List<Department> depList = departmentService.read();
+		return new ModelAndView("viewdep", "depList", depList);
+	}
+
 }

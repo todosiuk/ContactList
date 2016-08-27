@@ -1,5 +1,6 @@
 package contact.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +19,12 @@ import org.springframework.stereotype.Component;
 @Entity
 @Table(name = "store")
 @Component
-public class Store {
+public class Store implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
