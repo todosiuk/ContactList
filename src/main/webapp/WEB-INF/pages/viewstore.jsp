@@ -11,10 +11,12 @@
 	<h1>Список магазинов</h1>
 	<table border="2" width="70%" cellpadding="2">
 		<tr>
-			<th>Город</th>
+			<th>Id</th>
+			<th>Маркет</th>
 		</tr>
 		<c:forEach var="store" items="${list}">
 			<tr>
+				<td>${store.id }</td>
 				<td><a href="viewdep">${store.city}</a></td>
 				<td><a href="editstore/${store.id}">Обновить</a></td>
 				<td><a href="deletestore/${store.id}">Удалить</a></td>

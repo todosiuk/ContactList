@@ -59,7 +59,7 @@ public class DepartmentDao implements Dao<Department, String> {
 	}
 
 	@Override
-	public Collection getDepartmentsForStore(Store store) {
+	public Collection getDepartmentsForStore(Integer storeId) {
 		// TODO Auto-generated method stub
 		return null;
 	}

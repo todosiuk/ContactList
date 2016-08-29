@@ -50,18 +50,21 @@ public class StoreDao implements Dao<Store, String> {
 	}
 
 	public List<Store> getStoreFromId(Integer id) {
-		 List store = sessionFactory.getCurrentSession().createQuery("from Store where id=:id").setInteger("id", id).list();
-		 return store;
-		//return (List<Store>) sessionFactory.getCurrentSession().createNamedQuery("from Store where id=:id")
-			//	.setString(1, "id").list();
+		List store = sessionFactory.getCurrentSession().createQuery("from Store where id=:id").setInteger("id", id)
+				.list();
+		return store;
+		// return (List<Store>)
+		// sessionFactory.getCurrentSession().createNamedQuery("from Store where
+		// id=:id")
+		// .setString(1, "id").list();
 	}
 
 	@Override
-	public Collection getDepartmentsForStore(Store store) {
-		List departments = new ArrayList<Department>();
-		Integer storeId = store.getId();
+	public Collection getDepartmentsForStore(Integer idstore) {
+		Store store = sessionFactory.getCurrentSession().load(Store.class, idstore);
+		List<Department> departments = new ArrayList<Department>();
 		Query query = sessionFactory.getCurrentSession().createQuery("from Department where store_idstore = :idstore")
-				.setInteger("idstore", storeId);
+				.setInteger("idstore", idstore);
 		return departments = query.list();
 
 	}

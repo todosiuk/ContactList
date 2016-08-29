@@ -45,7 +45,7 @@ public class DepartmentService implements ServiceInt<Department, String> {
 	}
 
 	@Override
-	public Collection getDepartmentsForStore(Store store) {
+	public Collection getDepartmentsForStore(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

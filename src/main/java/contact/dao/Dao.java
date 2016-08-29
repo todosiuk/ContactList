@@ -18,6 +18,6 @@ public interface Dao<T, Id extends Serializable> {
 
 	public void delete(Integer id);
 	
-	public Collection getDepartmentsForStore (Store store);
+	public Collection getDepartmentsForStore (Integer storeId);
 
 }

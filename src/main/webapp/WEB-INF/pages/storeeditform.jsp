@@ -12,8 +12,8 @@
 	<form:form method="POST" action="/ContactList/editstore">
 		<table>
 			<tr>
-				<td></td>
-				<td><form:hidden path="id" /></td>
+				<td>Id</td>
+				<td><form:input path="id" /></td>
 			</tr>
 			<tr>
 				<td>City :</td>

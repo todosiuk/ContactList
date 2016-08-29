@@ -34,56 +34,77 @@ public class AppController {
 	private DepartmentService departmentService;
 
 	@RequestMapping("/storeform")
-	public ModelAndView showform() {
+	public ModelAndView showForm() {
 		return new ModelAndView("storeform", "command", new Store());
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public ModelAndView create(@ModelAttribute("store") Store store) {
+	public ModelAndView createStore(@ModelAttribute("store") Store store) {
 		storeService.create(store, null);
 		return new ModelAndView("redirect:/viewstore");
 	}
 
 	@RequestMapping("/viewstore")
-	public ModelAndView viewstore() {
+	public ModelAndView viewStore() {
 		List<Store> list = storeService.read();
 		return new ModelAndView("viewstore", "list", list);
 	}
 
-	@RequestMapping(value = "/editstore/{id}")
-	public ModelAndView edit(@PathVariable int id) {
+	@RequestMapping("/editstore/{id}")
+	public ModelAndView editStore(@PathVariable int id) {
 		Store store = storeService.getStoreFromId(id);
 		return new ModelAndView("storeeditform", "command", store);
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public ModelAndView update(@ModelAttribute("store") Store store) {
+	public ModelAndView updateStore(@ModelAttribute("store") Store store) {
 		storeService.update(store);
 		return new ModelAndView("redirect:/viewstore");
 	}
 
 	@RequestMapping(value = "/deletestore/{id}", method = RequestMethod.GET)
-	public ModelAndView delete(@PathVariable int id) {
+	public ModelAndView deleteStore(@PathVariable int id) {
 		storeService.delete(id);
 		return new ModelAndView("redirect:/viewstore");
 	}
 
 	@RequestMapping("/departmentform")
-	public ModelAndView showdepform() {
+	public ModelAndView showDepForm() {
 		return new ModelAndView("departmentform", "command", new Department());
 	}
 
-	@RequestMapping("/createdepartment")
-	public ModelAndView createdep(@RequestParam("id") Integer id, 
-            @ModelAttribute("department") Department department) {
+	@RequestMapping(value = "/createdepartment", method = RequestMethod.POST)
+	public ModelAndView createDep(@RequestParam("id") Integer id, @ModelAttribute("department") Department department) {
 		departmentService.create(department, id);
 		return new ModelAndView("redirect:/viewdep");
 	}
 
 	@RequestMapping("/viewdep")
-	public ModelAndView viewdep() {
+	public ModelAndView viewDep() {
 		List<Department> depList = departmentService.read();
 		return new ModelAndView("viewdep", "depList", depList);
+	}
+
+	@RequestMapping("/editdep/{id}")
+	public ModelAndView editDep(@PathVariable int id) {
+		Department department = departmentService.getDepartmentFromId(id);
+		return new ModelAndView("departmenteditform", "command", department);
+	}
+
+	@RequestMapping(value = "/updatedep", method = RequestMethod.POST)
+	public ModelAndView updateDep(@ModelAttribute("department") Department department) {
+		departmentService.update(department);
+		return new ModelAndView("redirect:/viewdep");
+	}
+
+	@RequestMapping(value = "/deletedep/{id}", method = RequestMethod.GET)
+	public ModelAndView deleteDep(@PathVariable int id) {
+		departmentService.delete(id);
+		return new ModelAndView("redirect:/viewdep");
+	}
+	
+	public ModelAndView getDepForStore(@PathVariable int id){
+		storeService.getDepartmentsForStore(id)
 	}
 
 }

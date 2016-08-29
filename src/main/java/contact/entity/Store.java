@@ -35,7 +35,7 @@ public class Store implements Serializable {
 	private String city;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "store")
-	private List<Department> depList = new ArrayList<Department>();
+	private List<Department> depList;
 
 	public Store() {
 	}
