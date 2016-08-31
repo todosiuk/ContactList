@@ -12,6 +12,7 @@
 
 	<table border="2" width="70%" cellpadding="2">
 		<tr>
+			<th>Маркет</th>
 			<th>Отдел</th>
 			<th>Должность</th>
 			<th>E-mail</th>
@@ -20,10 +21,10 @@
 		<c:forEach var="department" items="${depList}">
 			<tr>
 				</h1>
-				<td><a href="viewdep">${department.nameDepartment}</a></td>
-				<td><a href="viewdep">${department.post}</a></td>
-				<td><a href="viewdep">${department.email}</a></td>
-				<td><a href="viewdep">${department.phone}</a></td>
+				<td>${department.nameDepartment}</td>
+				<td>${department.post}</td>
+				<td>${department.email}</td>
+				<td>${department.phone}</td>
 
 			</tr>
 		</c:forEach>

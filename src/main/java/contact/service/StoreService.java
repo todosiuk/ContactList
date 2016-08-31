@@ -3,6 +3,7 @@ package contact.service;
 import java.util.Collection;
 import java.util.List;
 
+import org.hibernate.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -41,7 +42,7 @@ public class StoreService implements ServiceInt<Store, String> {
 	}
 
 	public Store getStoreFromId(Integer id) {
-		return (Store) ((StoreDao) storeDao).getStoreFromId(id);
+		return ((StoreDao) storeDao).getStoreFromId(id);
 	}
 
 	@Override

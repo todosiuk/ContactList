@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h1>Edit Store</h1>
-	<form:form method="POST" action="/ContactList/editstore">
+	<form:form method="POST" action="/ContactList/update">
 		<table>
 			<tr>
 				<td>Id</td>

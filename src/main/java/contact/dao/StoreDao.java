@@ -32,7 +32,6 @@ public class StoreDao implements Dao<Store, String> {
 	}
 
 	public List<Store> read() {
-
 		return sessionFactory.getCurrentSession().createQuery("from Store").list();
 	}
 
@@ -49,14 +48,9 @@ public class StoreDao implements Dao<Store, String> {
 
 	}
 
-	public List<Store> getStoreFromId(Integer id) {
-		List store = sessionFactory.getCurrentSession().createQuery("from Store where id=:id").setInteger("id", id)
-				.list();
+	public Store getStoreFromId(Integer id) {
+		Store store = (Store) sessionFactory.getCurrentSession().createQuery("from Store where id=:id").setParameter("id", id).uniqueResult();
 		return store;
-		// return (List<Store>)
-		// sessionFactory.getCurrentSession().createNamedQuery("from Store where
-		// id=:id")
-		// .setString(1, "id").list();
 	}
 
 	@Override

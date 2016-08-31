@@ -1,6 +1,7 @@
 package contact.controller;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -52,8 +53,8 @@ public class AppController {
 
 	@RequestMapping("/editstore/{id}")
 	public ModelAndView editStore(@PathVariable int id) {
-		Store store = storeService.getStoreFromId(id);
-		return new ModelAndView("storeeditform", "command", store);
+		Store store = (Store) storeService.getStoreFromId(id);
+		return new ModelAndView("storeeditform", "command", new Store());
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
@@ -86,9 +87,9 @@ public class AppController {
 	}
 
 	@RequestMapping("/editdep/{id}")
-	public ModelAndView editDep(@PathVariable int id) {
+	public ModelAndView editDep(@PathVariable Integer id) {
 		Department department = departmentService.getDepartmentFromId(id);
-		return new ModelAndView("departmenteditform", "command", department);
+		return new ModelAndView("departmenteditform", "department", department);
 	}
 
 	@RequestMapping(value = "/updatedep", method = RequestMethod.POST)
@@ -98,13 +99,22 @@ public class AppController {
 	}
 
 	@RequestMapping(value = "/deletedep/{id}", method = RequestMethod.GET)
-	public ModelAndView deleteDep(@PathVariable int id) {
+	public ModelAndView deleteDep(@PathVariable Integer id) {
 		departmentService.delete(id);
 		return new ModelAndView("redirect:/viewdep");
 	}
-	
-	public ModelAndView getDepForStore(@PathVariable int id){
-		storeService.getDepartmentsForStore(id)
+
+	@RequestMapping("/viewdepforstore")
+	public ModelAndView viewDepForStore() {
+		List<Department> departList = departmentService.read();
+		return new ModelAndView("viewdepforstore", "departList", departList);
+	}
+
+	@RequestMapping(value = "/depforstore/{id}")
+	public ModelAndView getDepForStore(@PathVariable Integer id) {
+		Collection<Department> depList = storeService.getDepartmentsForStore(id);
+		return new ModelAndView("redirect:/viewdepforstore");
+
 	}
 
 }
