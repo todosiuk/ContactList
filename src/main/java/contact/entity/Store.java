@@ -21,6 +21,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class Store implements Serializable {
 
+	public Store() {
+		
+	}
+
 	/**
 	 * 
 	 */
@@ -36,9 +40,6 @@ public class Store implements Serializable {
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "store")
 	private List<Department> depList;
-
-	public Store() {
-	}
 
 	public Store(String city) {
 		super();

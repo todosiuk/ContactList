@@ -16,8 +16,10 @@
 		</tr>
 		<c:forEach var="store" items="${list}">
 			<tr>
-				<td><a href="depforstore/">${store.id }</a></td>
+				<td><a href="viewdepforstore">${store.id }</a></td>
 				<td>${store.city}</td>
+				<td><a href="departmentform">Добавить
+						департамент</a></td>
 				<td><a href="editstore/${store.id}">Обновить</a></td>
 				<td><a href="deletestore/${store.id}">Удалить</a></td>
 			</tr>

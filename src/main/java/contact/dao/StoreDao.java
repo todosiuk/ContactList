@@ -1,66 +1,23 @@
 package contact.dao;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 
-import javax.annotation.Resource;
-
-import org.hibernate.Query;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
-import contact.entity.Department;
 import contact.entity.Store;
-
 @Component
-@Transactional
-public class StoreDao implements Dao<Store, String> {
+public interface StoreDao<Store, id extends Serializable> {
 
-	@Autowired
-	private SessionFactory sessionFactory;
+	public void create(Store entity);
 
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
+	public List<Store> read();
 
-	public void create(Store entity, Integer id) {
-		sessionFactory.getCurrentSession().save(entity);
-	}
+	public void update(Store entity);
 
-	public List<Store> read() {
-		return sessionFactory.getCurrentSession().createQuery("from Store").list();
-	}
-
-	public void update(Store entity) {
-		sessionFactory.getCurrentSession().update(entity);
-
-	}
-
-	public void delete(Integer id) {
-		Store store = (Store) sessionFactory.getCurrentSession().load(Store.class, id);
-		if (null != store) {
-			sessionFactory.getCurrentSession().delete(store);
-		}
-
-	}
-
-	public Store getStoreFromId(Integer id) {
-		Store store = (Store) sessionFactory.getCurrentSession().createQuery("from Store where id=:id").setParameter("id", id).uniqueResult();
-		return store;
-	}
-
-	@Override
-	public Collection getDepartmentsForStore(Integer idstore) {
-		Store store = sessionFactory.getCurrentSession().load(Store.class, idstore);
-		List<Department> departments = new ArrayList<Department>();
-		Query query = sessionFactory.getCurrentSession().createQuery("from Department where store_idstore = :idstore")
-				.setInteger("idstore", idstore);
-		return departments = query.list();
-
-	}
+	public void delete(Integer id);
+	
+	public Collection getDepartmentsForStore (Integer storeId);
 
 }

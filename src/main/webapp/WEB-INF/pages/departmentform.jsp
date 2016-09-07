@@ -8,12 +8,12 @@
 <title>Новый департамент</title>
 </head>
 <body>
-	<h1>Добавить данные</h1>
-	<form:form method="post" action="createdepartment">
+	<h1>Добавить новый департамент</h1>
+	<form:form modelAttribute="departmentAttribute" method="POST" action="createdepartment">
 		<table>
 			<tr>
 				<td>Маркет</td>
-				<td><form:input path="id" /></td>
+				<td><input type="text" value="${storeId}" /></td>
 			</tr>
 			<tr>
 				<td>Отдел</td>

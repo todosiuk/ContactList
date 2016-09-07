@@ -15,7 +15,7 @@
 		<th>Телефон</th>
 		<th>E-mail</th>
 	</tr>
-	<c:forEach var="department" items=${departList }>
+	<c:forEach var="department" items="${departList }">
 		<tr>
 			<td>${department.name }</td>
 			<td>${department.post }</td>

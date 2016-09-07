@@ -11,8 +11,7 @@
 	<h1>Список контактов магазина</h1>
 
 	<table border="2" width="70%" cellpadding="2">
-		<tr>
-			<th>Маркет</th>
+		<tr>			
 			<th>Отдел</th>
 			<th>Должность</th>
 			<th>E-mail</th>
@@ -28,6 +27,7 @@
 
 			</tr>
 		</c:forEach>
+		<a href = "/ContactList/index.jsp">На главную</a> 
 
 
 

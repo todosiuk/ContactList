@@ -21,18 +21,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import contact.entity.Department;
 import contact.entity.Store;
-import contact.service.DepartmentService;
-import contact.service.ServiceInt;
+import contact.service.DepartmentServiceImpl;
 import contact.service.StoreService;
+import contact.service.StoreServiceImpl;
 
 @Controller
 public class AppController {
 
 	@Autowired
-	private StoreService storeService;
-
-	@Autowired
-	private DepartmentService departmentService;
+	private DepartmentServiceImpl departmentService;
 
 	@RequestMapping("/storeform")
 	public ModelAndView showForm() {
@@ -41,7 +38,7 @@ public class AppController {
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public ModelAndView createStore(@ModelAttribute("store") Store store) {
-		storeService.create(store, null);
+		storeService.create(store);
 		return new ModelAndView("redirect:/viewstore");
 	}
 
@@ -69,15 +66,21 @@ public class AppController {
 		return new ModelAndView("redirect:/viewstore");
 	}
 
-	@RequestMapping("/departmentform")
-	public ModelAndView showDepForm() {
-		return new ModelAndView("departmentform", "command", new Department());
+	@RequestMapping(value = "/departmentform", method = RequestMethod.GET)
+	public String showDepForm(@RequestParam("id") Integer storeId, Model model) {
+		Department department = new Department();
+		department.setStore(storeService.getStoreFromId(storeId));
+		model.addAttribute("departmentAttribute", department);
+		return "departmentform";
+
 	}
 
 	@RequestMapping(value = "/createdepartment", method = RequestMethod.POST)
-	public ModelAndView createDep(@RequestParam("id") Integer id, @ModelAttribute("department") Department department) {
-		departmentService.create(department, id);
-		return new ModelAndView("redirect:/viewdep");
+	public String createDep(@RequestParam("id") Integer storeId,
+			@ModelAttribute("departmentAttribute") Department department) {
+		departmentService.create(storeId, department);
+		return "viewdep";
+
 	}
 
 	@RequestMapping("/viewdep")

@@ -1,54 +1,23 @@
 package contact.service;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 
-import org.hibernate.Query;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import contact.dao.Dao;
-import contact.dao.StoreDao;
 import contact.entity.Store;
+@Component
+public interface StoreService<T, Id extends Serializable> {
 
+	public void create(T entity);
 
-@Service("storeService")
-@Transactional
-public class StoreService implements ServiceInt<Store, String> {
+	public List<T> read();
 
-	@Autowired
-	@Qualifier("storeDao")
-	private Dao<Store, ?> storeDao;
+	public void update(T entity);
 
-	public void create(Store entity, Integer id) {
-		storeDao.create(entity, null);
-	}
+	public void delete(Integer id);
 
-	public List<Store> read() {
-		return storeDao.read();
-	}
-
-	public void update(Store entity) {
-		storeDao.update(entity);
-
-	}
-
-	public void delete(Integer id) {
-		storeDao.delete(id);
-
-	}
-
-	public Store getStoreFromId(Integer id) {
-		return ((StoreDao) storeDao).getStoreFromId(id);
-	}
-
-	@Override
-	public Collection getDepartmentsForStore(Integer storeId) {
-		// TODO Auto-generated method stub
-		return storeDao.getDepartmentsForStore(storeId);
-	}
+	public Collection getDepartmentsForStore(Integer storeId);
 
 }
