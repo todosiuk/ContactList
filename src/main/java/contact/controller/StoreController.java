@@ -12,13 +12,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import contact.entity.Store;
 import contact.service.StoreService;
+import contact.service.StoreServiceImpl;
 
 @Controller
 @RequestMapping("/store")
 public class StoreController {
 
 	@Autowired
-	private StoreService storeService;
+	private StoreServiceImpl storeService;
 
 	@RequestMapping(value = "/stores", method = RequestMethod.GET)
 	public String getStores(Model model) {
@@ -39,12 +40,26 @@ public class StoreController {
 		return "addedstorepage";
 	}
 
+	@RequestMapping(value = "/stores/delete", method = RequestMethod.GET)
 	public String delete(@RequestParam(value = "id", required = true) Integer id, Model model) {
 		storeService.delete(id);
 		model.addAttribute("id", id);
 		return "deletedstorepage";
 	}
-	
-	
+
+	@RequestMapping(value = "/stores/edit", method = RequestMethod.GET)
+	public String getUpdate(@RequestParam(value = "id", required = true) Integer id, Model model) {
+		model.addAttribute("storeAttribute", storeService.getStoreFromId(id));
+		return "storeeditpage";
+	}
+
+	@RequestMapping(value = "/stores/edit", method = RequestMethod.POST)
+	public String saveUpdate(@ModelAttribute("storeAttribute") Store store,
+			@RequestParam(value = "id", required = true) Integer id, Model model) {
+		store.setId(id);
+		storeService.update(store);
+		model.addAttribute("id", id);
+		return "editstorepage";
+	}
 
 }

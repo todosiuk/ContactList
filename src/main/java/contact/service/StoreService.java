@@ -8,13 +8,13 @@ import org.springframework.stereotype.Component;
 
 import contact.entity.Store;
 @Component
-public interface StoreService<T, Id extends Serializable> {
+public interface StoreService<Store, Id extends Serializable> {
 
-	public void create(T entity);
+	public void create(Store entity);
 
-	public List<T> read();
+	public List<Store> read();
 
-	public void update(T entity);
+	public void update(Store entity);
 
 	public void delete(Integer id);
 
