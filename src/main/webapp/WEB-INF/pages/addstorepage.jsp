@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h1>Создание нового магазина</h1>
-	<c:url var="saveUrl" value="/stores/add" />
+	<c:url var="saveUrl" value="/store/stores/add" />
 	<form:form modelAttribute="storeAttribute" method="POST"
 		action="${saveUrl}">
 		<table>

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import contact.entity.Store;
-import contact.service.StoreService;
 import contact.service.StoreServiceImpl;
 
 @Controller
@@ -28,7 +27,7 @@ public class StoreController {
 		return "storespage";
 	}
 
-	@RequestMapping(value = "/stores/add", method = RequestMethod.POST)
+	@RequestMapping(value = "/stores/add", method = RequestMethod.GET)
 	public String getAdd(Model model) {
 		model.addAttribute("storeAttribute", new Store());
 		return "addstorepage";
@@ -50,7 +49,7 @@ public class StoreController {
 	@RequestMapping(value = "/stores/edit", method = RequestMethod.GET)
 	public String getUpdate(@RequestParam(value = "id", required = true) Integer id, Model model) {
 		model.addAttribute("storeAttribute", storeService.getStoreFromId(id));
-		return "storeeditpage";
+		return "editstorepage";
 	}
 
 	@RequestMapping(value = "/stores/edit", method = RequestMethod.POST)
@@ -59,7 +58,7 @@ public class StoreController {
 		store.setId(id);
 		storeService.update(store);
 		model.addAttribute("id", id);
-		return "editstorepage";
+		return "editedstorepage";
 	}
 
 }

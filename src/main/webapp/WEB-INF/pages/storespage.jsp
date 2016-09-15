@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h1>Магазины</h1>
-	<c:url var="addUrl" value="/stores/add" />
+	<c:url var="addUrl" value="/store/stores/add" />
 	<table style="border: 1px solid; width: 500px; text-align: center">
 		<thead style="background: #fcf">
 			<tr>
@@ -18,8 +18,8 @@
 		</thead>
 		<tbody>
 			<c:forEach items="${stores}" var="store">
-				<c:url var="editUrl" value="/stores/edit?id=${store.id}" />
-				<c:url var="deleteUrl" value="/stores/delete?id=${store.id}" />
+				<c:url var="editUrl" value="/store/stores/edit?id=${store.id}" />
+				<c:url var="deleteUrl" value="/store/stores/delete?id=${store.id}" />
 				<tr>
 					<td><c:out value="${store.city}" /></td>
 					<td><a href="${editUrl}">Edit</a></td>
