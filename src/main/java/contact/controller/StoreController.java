@@ -34,7 +34,7 @@ public class StoreController {
 	}
 
 	@RequestMapping(value = "/stores/add", method = RequestMethod.POST)
-	public String addStore(@ModelAttribute("storeAttribute") Store store) {
+	public String postAdd(@ModelAttribute("storeAttribute") Store store) {
 		storeService.create(store);
 		return "addedstorepage";
 	}
@@ -59,6 +59,13 @@ public class StoreController {
 		storeService.update(store);
 		model.addAttribute("id", id);
 		return "editedstorepage";
+	}
+
+	public String getDepForStore(@RequestParam(value = "id", required = true) Integer id, Model model) {
+		storeService.getDepartmentsForStore(id);
+		model.addAttribute("id", id);
+		return "deplist";
+
 	}
 
 }

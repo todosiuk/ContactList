@@ -63,7 +63,7 @@ public class StoreDaoImpl implements StoreDao<Store, String> {
 
 	// ѕолучение департаментов конкретного магазина
 	@Override
-	public Collection getDepartmentsForStore(Integer idstore) {
+	public List<Department> getDepartmentsForStore(Integer idstore) {
 		Store store = sessionFactory.getCurrentSession().load(Store.class, idstore);
 		List<Department> departments = new ArrayList<Department>();
 		Query query = sessionFactory.getCurrentSession()

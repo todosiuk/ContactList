@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import contact.dao.StoreDao;
 import contact.dao.StoreDaoImpl;
+import contact.entity.Department;
 import contact.entity.Store;
 
 @Service("storeService")
@@ -44,7 +45,7 @@ public class StoreServiceImpl implements StoreService<Store, String> {
 	}
 
 	@Override
-	public Collection getDepartmentsForStore(Integer storeId) {
+	public List<Department> getDepartmentsForStore(Integer storeId) {
 		// TODO Auto-generated method stub
 		return storeDao.getDepartmentsForStore(storeId);
 	}
