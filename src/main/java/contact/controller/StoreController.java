@@ -24,32 +24,32 @@ public class StoreController {
 	public String getStores(Model model) {
 		List<Store> stores = storeService.read();
 		model.addAttribute("stores", stores);
-		return "storespage";
+		return "storesPage";
 	}
 
 	@RequestMapping(value = "/stores/add", method = RequestMethod.GET)
 	public String getAdd(Model model) {
 		model.addAttribute("storeAttribute", new Store());
-		return "addstorepage";
+		return "addStorePage";
 	}
 
 	@RequestMapping(value = "/stores/add", method = RequestMethod.POST)
 	public String postAdd(@ModelAttribute("storeAttribute") Store store) {
 		storeService.create(store);
-		return "addedstorepage";
+		return "addedStorePage";
 	}
 
 	@RequestMapping(value = "/stores/delete", method = RequestMethod.GET)
 	public String delete(@RequestParam(value = "id", required = true) Integer id, Model model) {
 		storeService.delete(id);
 		model.addAttribute("id", id);
-		return "deletedstorepage";
+		return "deletedStorePage";
 	}
 
 	@RequestMapping(value = "/stores/edit", method = RequestMethod.GET)
 	public String getUpdate(@RequestParam(value = "id", required = true) Integer id, Model model) {
 		model.addAttribute("storeAttribute", storeService.getStoreFromId(id));
-		return "editstorepage";
+		return "editStorePage";
 	}
 
 	@RequestMapping(value = "/stores/edit", method = RequestMethod.POST)
@@ -58,13 +58,14 @@ public class StoreController {
 		store.setId(id);
 		storeService.update(store);
 		model.addAttribute("id", id);
-		return "editedstorepage";
+		return "editedStorePage";
 	}
 
+	@RequestMapping(value = "/stores/record", method = RequestMethod.GET)
 	public String getDepForStore(@RequestParam(value = "id", required = true) Integer id, Model model) {
 		storeService.getDepartmentsForStore(id);
 		model.addAttribute("id", id);
-		return "deplist";
+		return "record";
 
 	}
 

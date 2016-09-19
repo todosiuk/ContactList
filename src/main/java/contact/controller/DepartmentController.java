@@ -22,32 +22,31 @@ public class DepartmentController {
 	private DepartmentServiceImpl depService;
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public String getAdd(@RequestParam("id") Integer storeId, Model model) {
+	public String getAdd(@RequestParam(value = "id", required=true) Integer storeId, Model model) {
 		Department department = new Department();
 		department.setStore(storeService.getStoreFromId(storeId));
 		model.addAttribute("departmentAttribute", department);
-		return "adddeppage";
+		return "addDepartmentPage";
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String postAdd(@RequestParam("id") Integer storeId,
+	public String postAdd(@RequestParam(value = "id", required=true) Integer storeId,
 			@ModelAttribute("departmentAttribute") Department department) {
 		depService.create(storeId, department);
-		return "addeddeppage";
+		return "addedDepartmentPage";
 	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String delete(@RequestParam("id") Integer depId) {
 		depService.delete(depId);
-		return "deleteddeppage";
+		return "deletedDepartmentPage";
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public String getUpdate(@RequestParam("sid") Integer storeId, @RequestParam("did") Integer depId, Model model) {
+	public String getUpdate(@RequestParam("id") Integer depId, Model model) {
 		Department existingDepartment = depService.getDepartmentFromId(depId);
-		model.addAttribute("storeId", storeId);
 		model.addAttribute("departmentAttribute", existingDepartment);
-		return "editdeppage";
+		return "editDepartmentPage";
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
@@ -55,7 +54,7 @@ public class DepartmentController {
 			@ModelAttribute("departmentAttribute") Department department) {
 		department.setId(depId);
 		depService.update(department);
-		return "editeddeppage";
+		return "editedDepartmentPage";
 	}
 
 }

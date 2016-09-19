@@ -9,6 +9,10 @@
 <body>
 	<h1>Магазины</h1>
 	<c:url var="addUrl" value="/store/stores/add" />
+	<h3>
+		<a href="${addUrl}">Добавить магазин</a>
+	</h3>
+	<p>
 	<table style="border: 1px solid; width: 500px; text-align: center">
 		<thead style="background: #fcf">
 			<tr>
@@ -18,13 +22,14 @@
 		</thead>
 		<tbody>
 			<c:forEach items="${stores}" var="store">
+				<c:url var="addDepUrl" value="/dep/add?id=${store.id}" />
 				<c:url var="editUrl" value="/store/stores/edit?id=${store.id}" />
 				<c:url var="deleteUrl" value="/store/stores/delete?id=${store.id}" />
 				<tr>
 					<td><c:out value="${store.city}" /></td>
-					<td><a href="${editUrl}">Edit</a></td>
-					<td><a href="${deleteUrl}">Delete</a></td>
-					<td><a href="${addUrl}">Add</a></td>
+					<td><a href="${editUrl}">Обновить</a></td>
+					<td><a href="${deleteUrl}">Удалить</a></td>
+					<td><a href="${addDepUrl}">Добавить департамент</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
