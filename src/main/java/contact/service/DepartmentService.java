@@ -7,7 +7,7 @@ public interface DepartmentService <T, Id extends Serializable> {
 
 	public void create(Integer id, T entity);
 
-	public List<T> read();
+	public List<T> read(Integer integer);
 
 	public void update(T entity);
 

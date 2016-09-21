@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import contact.entity.Department;
 import contact.entity.Store;
 import contact.service.StoreServiceImpl;
 
@@ -62,7 +63,9 @@ public class StoreController {
 	}
 
 	@RequestMapping(value = "/stores/record", method = RequestMethod.GET)
-	public String getDepForStore(@RequestParam(value = "id", required = true) Integer id, Model model) {
+	public String getDepForStore(@RequestParam(value = "id", required = true) Integer id,Model model) {
+		Store store = new Store();
+		store.setDepList(depList);
 		storeService.getDepartmentsForStore(id);
 		model.addAttribute("id", id);
 		return "record";

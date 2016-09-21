@@ -25,8 +25,9 @@
 				<c:url var="addDepUrl" value="/dep/add?id=${store.id}" />
 				<c:url var="editUrl" value="/store/stores/edit?id=${store.id}" />
 				<c:url var="deleteUrl" value="/store/stores/delete?id=${store.id}" />
+				<c:url var="getDep" value="/store/stores/record?id=${store.id}" />
 				<tr>
-					<td><c:out value="${store.city}" /></td>
+					<td><a href="${getDep}"><c:out value="${store.city}" /></a></td>
 					<td><a href="${editUrl}">Обновить</a></td>
 					<td><a href="${deleteUrl}">Удалить</a></td>
 					<td><a href="${addDepUrl}">Добавить департамент</a></td>

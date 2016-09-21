@@ -1,11 +1,8 @@
 package contact.service;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,7 +10,6 @@ import contact.dao.StoreDao;
 import contact.dao.DepartmentDaoImpl;
 import contact.dao.DepartmentDao;
 import contact.entity.Department;
-import contact.entity.Store;
 
 @Service("departmentService")
 @Transactional
@@ -26,7 +22,7 @@ public class DepartmentServiceImpl implements DepartmentService<Department, Stri
 		departmentDao.create(storeId, entity);
 	}
 
-	public List<Department> read() {
+	public List<Department> read(Integer id) {
 		return departmentDao.read();
 	}
 

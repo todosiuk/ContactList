@@ -71,5 +71,4 @@ public class StoreDaoImpl implements StoreDao<Store, String> {
 		return departments = query.getResultList();
 
 	}
-
 }
