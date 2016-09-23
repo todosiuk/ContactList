@@ -56,7 +56,7 @@ public class StoreDaoImpl implements StoreDao<Store, String> {
 
 	// Получение магазина по его id
 	public Store getStoreFromId(Integer id) {
-		Store store = (Store) sessionFactory.getCurrentSession().createQuery("from Store s where s.id=:id")
+		Store store = (Store) sessionFactory.getCurrentSession().createQuery("from Store  where id=:id")
 				.setParameter("id", id).getSingleResult();
 		return store;
 	}
@@ -67,7 +67,7 @@ public class StoreDaoImpl implements StoreDao<Store, String> {
 		Store store = sessionFactory.getCurrentSession().load(Store.class, idstore);
 		List<Department> departments = new ArrayList<Department>();
 		Query query = sessionFactory.getCurrentSession()
-				.createQuery("from Department d where d.store_idstore = :idstore").setParameter("idstore", idstore);
+				.createQuery("from Department  where store_idstore = :idstore").setParameter("idstore", idstore);
 		return departments = query.getResultList();
 
 	}

@@ -1,5 +1,6 @@
 package contact.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import contact.dto.StoreDTO;
 import contact.entity.Department;
 import contact.entity.Store;
+import contact.service.DepartmentServiceImpl;
 import contact.service.StoreServiceImpl;
 
 @Controller
@@ -20,6 +23,9 @@ public class StoreController {
 
 	@Autowired
 	private StoreServiceImpl storeService;
+
+	@Autowired
+	private DepartmentServiceImpl depService;
 
 	@RequestMapping(value = "/stores", method = RequestMethod.GET)
 	public String getStores(Model model) {
@@ -63,11 +69,16 @@ public class StoreController {
 	}
 
 	@RequestMapping(value = "/stores/record", method = RequestMethod.GET)
-	public String getDepForStore(@RequestParam(value = "id", required = true) Integer id,Model model) {
-		Store store = new Store();
-		store.setDepList(depList);
-		storeService.getDepartmentsForStore(id);
-		model.addAttribute("id", id);
+	public String getDepForStore(@RequestParam(value = "id", required = true) Integer storeId, Model model) {
+		List<Store> stores = storeService.read();
+		List<StoreDTO> storeDTO = new ArrayList<StoreDTO>();
+		
+			StoreDTO dto = new StoreDTO();
+			dto.setDepList(storeService.getDepartmentsForStore(storeId));
+			storeDTO.add(dto);
+		
+		model.addAttribute("stores", storeDTO);
+
 		return "record";
 
 	}
