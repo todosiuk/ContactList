@@ -2,6 +2,8 @@ package contact.dao;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -68,7 +70,14 @@ public class StoreDaoImpl implements StoreDao<Store, String> {
 		List<Department> departments = new ArrayList<Department>();
 		Query query = sessionFactory.getCurrentSession()
 				.createQuery("from Department  where store_idstore = :idstore").setParameter("idstore", idstore);
-		return departments = query.getResultList();
+		 departments = query.getResultList();
+		 Collections.sort(departments, new Comparator<Department>(){
+			 public int compare (Department d1, Department d2){
+				 return d1.getNameDepartment().compareTo(d2.getNameDepartment());
+			 }
+			 });
+		return departments;
+		 
 
 	}
 }

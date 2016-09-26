@@ -42,7 +42,7 @@ public class Department implements Serializable{
 	@Column(name = "phone")
 	private String phone;
 
-	@ManyToOne(cascade = { CascadeType.REFRESH }, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = { CascadeType.REFRESH })
 	@JoinColumn(name = "store_idstore")
 	private Store store;
 	

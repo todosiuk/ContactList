@@ -13,6 +13,7 @@
 	<table style="border: 1px solid; width: 100%; text-align: center">
 		<thead style="background: #d3dce3">
 			<tr>
+				<th>Id</th>
 				<th>Отдел</th>
 				<th>Должность</th>
 				<th>Телефон</th>
@@ -22,11 +23,17 @@
 		<tbody style="background: #ccc">
 			<c:forEach items="${stores}" var="store">
 				<c:forEach items="${store.depList}" var="depsList">
+					<c:url var="editUrl"
+						value="/dep/edit?storeId=${depsList.store.id}&depId=${depsList.id}" />
+					<c:url var="deleteUrl" value="/dep/delete?id=${depsList.id}" />
 					<tr>
+						<td><c:out value="${depsList.id}" /></td>
 						<td><c:out value="${depsList.nameDepartment}" /></td>
 						<td><c:out value="${depsList.post}" /></td>
 						<td><c:out value="${depsList.phone}" /></td>
 						<td><c:out value="${depsList.email}" /></td>
+						<td><a href="${editUrl}">Редактировать</a></td>
+						<td><a href="${deleteUrl}">Удалить</a></td>
 					</tr>
 				</c:forEach>
 			</c:forEach>

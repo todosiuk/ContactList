@@ -28,7 +28,7 @@
 				<c:url var="getDep" value="/store/stores/record?id=${store.id}" />
 				<tr>
 					<td><a href="${getDep}"><c:out value="${store.city}" /></a></td>
-					<td><a href="${editUrl}">Обновить</a></td>
+					<td><a href="${editUrl}">Редактировать</a></td>
 					<td><a href="${deleteUrl}">Удалить</a></td>
 					<td><a href="${addDepUrl}">Добавить департамент</a></td>
 				</tr>

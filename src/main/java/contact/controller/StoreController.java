@@ -1,6 +1,9 @@
 package contact.controller;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +26,6 @@ public class StoreController {
 
 	@Autowired
 	private StoreServiceImpl storeService;
-
-	@Autowired
-	private DepartmentServiceImpl depService;
 
 	@RequestMapping(value = "/stores", method = RequestMethod.GET)
 	public String getStores(Model model) {
@@ -70,17 +70,14 @@ public class StoreController {
 
 	@RequestMapping(value = "/stores/record", method = RequestMethod.GET)
 	public String getDepForStore(@RequestParam(value = "id", required = true) Integer storeId, Model model) {
-		List<Store> stores = storeService.read();
 		List<StoreDTO> storeDTO = new ArrayList<StoreDTO>();
-		
-			StoreDTO dto = new StoreDTO();
-			dto.setDepList(storeService.getDepartmentsForStore(storeId));
-			storeDTO.add(dto);
-		
+		Store store = new Store();
+		StoreDTO dto = new StoreDTO();
+		dto.setId(store.getId());
+		dto.setCity(store.getCity());
+		dto.setDepList(storeService.getDepartmentsForStore(storeId));
+		storeDTO.add(dto);
 		model.addAttribute("stores", storeDTO);
-
 		return "record";
-
 	}
-
 }

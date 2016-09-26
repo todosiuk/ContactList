@@ -32,7 +32,7 @@ public class DepartmentDaoImpl implements DepartmentDao<Department, String> {
 	}
 
 	public void update(Department entity) {
-		sessionFactory.getCurrentSession().update(entity);
+		sessionFactory.openSession().update(entity);
 	}
 
 	public void delete(Integer id) {

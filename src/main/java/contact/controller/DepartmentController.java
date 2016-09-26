@@ -22,7 +22,7 @@ public class DepartmentController {
 	private DepartmentServiceImpl depService;
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public String getAdd(@RequestParam(value = "id", required=true) Integer storeId, Model model) {
+	public String getAdd(@RequestParam(value = "id", required = true) Integer storeId, Model model) {
 		Department department = new Department();
 		department.setStore(storeService.getStoreFromId(storeId));
 		model.addAttribute("departmentAttribute", department);
@@ -30,31 +30,35 @@ public class DepartmentController {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String postAdd(@RequestParam(value = "id", required=true) Integer storeId,
+	public String postAdd(@RequestParam(value = "id", required = true) Integer storeId,
 			@ModelAttribute("departmentAttribute") Department department) {
 		depService.create(storeId, department);
 		return "addedDepartmentPage";
 	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public String delete(@RequestParam("id") Integer depId) {
+	public String delete(@RequestParam(value = "id", required = true) Integer depId) {
 		depService.delete(depId);
 		return "deletedDepartmentPage";
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public String getUpdate(@RequestParam("id") Integer depId, Model model) {
-		Department existingDepartment = depService.getDepartmentFromId(depId);
-		model.addAttribute("departmentAttribute", existingDepartment);
+	public String getUpdate(@RequestParam(value = "storeId", required = true) Integer storeId,
+			@RequestParam("depId") Integer depId, Model model) {
+		Department department = new Department();
+		department.setStore(storeService.getStoreFromId(storeId));
+		model.addAttribute("storeId", storeId);
+		model.addAttribute("departmentAttribute", depService.getDepartmentFromId(depId));
 		return "editDepartmentPage";
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public String saveUpdate(@RequestParam("id") Integer depId,
+	public String saveUpdate(@RequestParam(value = "depId", required = true) Integer depId,
+			@RequestParam(value = "storeId", required = true) Integer storeId,
 			@ModelAttribute("departmentAttribute") Department department) {
 		department.setId(depId);
 		depService.update(department);
-		return "editedDepartmentPage";
+		return "editedDepPage";
 	}
 
 }
