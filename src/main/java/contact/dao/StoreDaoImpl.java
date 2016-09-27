@@ -29,55 +29,65 @@ public class StoreDaoImpl implements StoreDao<Store, String> {
 		this.sessionFactory = sessionFactory;
 	}
 
-	// Создание нового магазина
+	/**
+	 * Создание нового магазина
+	 */
 	public void create(Store entity) {
 		sessionFactory.getCurrentSession().save(entity);
 	}
 
-	// Получение всех магазинов
+	/**
+	 * Получение всех магазинов
+	 */
 	public List<Store> read() {
 		return sessionFactory.getCurrentSession().createQuery("from Store").getResultList();
 	}
 
-	// Обновление конкретного магазина
+	/**
+	 * Обновление конкретного магазина
+	 */
 	public void update(Store entity) {
 		sessionFactory.getCurrentSession().update(entity);
-
 	}
 
-	// Удаление магазина
+	/**
+	 * Удаление магазина
+	 */
 	public void delete(Integer id) {
-		Store store = this.getStoreFromId(id);// или так (Store)
-												// sessionFactory.getCurrentSession().load(Store.class,
-												// id);
+		Store store = this.getStoreFromId(id);
 		if (null != store) {
 			sessionFactory.getCurrentSession().delete(store);
 		}
-
 	}
 
-	// Получение магазина по его id
+	/**
+	 * Получение магазина по его id
+	 * 
+	 * @param id
+	 * @return
+	 */
 	public Store getStoreFromId(Integer id) {
 		Store store = (Store) sessionFactory.getCurrentSession().createQuery("from Store  where id=:id")
 				.setParameter("id", id).getSingleResult();
 		return store;
 	}
 
-	// Получение департаментов конкретного магазина
+	/**
+	 * Получение департаментов конкретного магазина
+	 */
 	@Override
 	public List<Department> getDepartmentsForStore(Integer idstore) {
 		Store store = sessionFactory.getCurrentSession().load(Store.class, idstore);
 		List<Department> departments = new ArrayList<Department>();
-		Query query = sessionFactory.getCurrentSession()
-				.createQuery("from Department  where store_idstore = :idstore").setParameter("idstore", idstore);
-		 departments = query.getResultList();
-		 Collections.sort(departments, new Comparator<Department>(){
-			 public int compare (Department d1, Department d2){
-				 return d1.getNameDepartment().compareTo(d2.getNameDepartment());
-			 }
-			 });
+		Query query = sessionFactory.getCurrentSession().createQuery("from Department  where store_idstore = :idstore")
+				.setParameter("idstore", idstore);
+		departments = query.getResultList();
+		Collections.sort(departments, new Comparator<Department>() {
+			public int compare(Department d1, Department d2) {
+				return d1.getNameDepartment().compareTo(d2.getNameDepartment());
+			}
+		});
 		return departments;
-		 
 
 	}
 }

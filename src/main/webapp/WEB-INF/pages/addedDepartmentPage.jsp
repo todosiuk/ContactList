@@ -4,15 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Департамент добавлен</title>
 </head>
 <body>
 	<p>
-	<h1>
-		Вы добавили новый департамент
-
-		<%=new java.util.Date()%>
-	</h1>
+	<h1>Вы добавили новый департамент</h1>
 	</p>
 	<c:url var="mainUrl" value="/store/stores" />
 	<p>

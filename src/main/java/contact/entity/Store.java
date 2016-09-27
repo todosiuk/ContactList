@@ -26,7 +26,8 @@ public class Store implements Serializable {
 	}
 
 	/**
-	 * 
+	 * Класс представляет сущность "Маркет".
+	 * Содержит поля id, город а также список департаментов.
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -38,7 +39,7 @@ public class Store implements Serializable {
 	@Column(name = "city")
 	private String city;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "store")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "store")
 	private List<Department> depList;
 
 	public Store(String city) {

@@ -4,6 +4,12 @@ import java.util.List;
 
 import contact.entity.Department;
 
+/**
+ * Класс используется для передачи данных.
+ * 
+ * @author todosuk
+ *
+ */
 public class StoreDTO {
 	private Integer id;
 	private String city;

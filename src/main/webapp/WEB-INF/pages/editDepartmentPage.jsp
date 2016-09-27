@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Изменение департамента</title>
 </head>
 <body>
 	<h1>Редактирование департамента</h1>
@@ -16,13 +16,14 @@
 		action="${saveUrl}">
 		<table>
 			<tr>
-				<td><form:label path="id">Id департамента:</form:label></td>
-				<td><form:input path="id" disabled="true" /></td>
+				<td><form:label path="id"></form:label></td>
+				<td style="display: none"><form:input path="id" disabled="true" /></td>
 			</tr>
 
 			<tr>
-				<td><form:label path="store.id">Id маркета:</form:label></td>
-				<td><form:input path="store.id" disabled="true" /></td>
+				<td><form:label path="store.id"></form:label></td>
+				<td style="display: none"><form:input path="store.id"
+						disabled="true" /></td>
 			</tr>
 
 			<tr>

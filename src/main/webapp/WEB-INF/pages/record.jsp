@@ -6,18 +6,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Департаменты</title>
 </head>
 <body>
 	<h1>Список департаментов магазина</h1>
 	<table style="border: 1px solid; width: 100%; text-align: center">
 		<thead style="background: #d3dce3">
 			<tr>
-				<th>Id</th>
+				<th style="display: none"></th>
 				<th>Отдел</th>
 				<th>Должность</th>
 				<th>Телефон</th>
 				<th>E-mail</th>
+				<th></th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody style="background: #ccc">
@@ -27,7 +29,7 @@
 						value="/dep/edit?storeId=${depsList.store.id}&depId=${depsList.id}" />
 					<c:url var="deleteUrl" value="/dep/delete?id=${depsList.id}" />
 					<tr>
-						<td><c:out value="${depsList.id}" /></td>
+
 						<td><c:out value="${depsList.nameDepartment}" /></td>
 						<td><c:out value="${depsList.post}" /></td>
 						<td><c:out value="${depsList.phone}" /></td>
@@ -39,5 +41,9 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	<c:url var="mainUrl" value="/store/stores" />
+	<p>
+		<a href="${mainUrl}">Список магазинов</a>
+	</p>
 </body>
 </html>

@@ -9,6 +9,13 @@ import org.springframework.stereotype.Component;
 import contact.entity.Department;
 import contact.entity.Store;
 
+/**
+ * Интерфейс для сервис-слоя класса Person.
+ * @author todosuk
+ *
+ * @param <Store>
+ * @param <Id>
+ */
 @Component
 public interface StoreService<Store, Id extends Serializable> {
 

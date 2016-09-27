@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Добавление департамента</title>
 </head>
 <body>
 	<h1>Добавление нового департамента</h1>
@@ -17,8 +17,9 @@
 		<table>
 
 			<tr>
-				<td><form:label path="store.id">Id маркета:</form:label></td>
-				<td><form:input path="store.id" disabled="true" /></td>
+				<td><form:label path="store.id"></form:label></td>
+				<td style="display: none"><form:input path="store.id"
+						disabled="true" /></td>
 			</tr>
 
 			<tr>

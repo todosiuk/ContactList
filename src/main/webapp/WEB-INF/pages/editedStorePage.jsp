@@ -6,17 +6,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Магазин изменен</title>
 </head>
 <body>
 	<h1>Магазины</h1>
-	<p>
-		Вы изменили магазин с id ${id}
-		<%=new java.util.Date()%></p>
+	<p>Вы изменили магазин с id ${id}</p>
 
 	<c:url var="mainUrl" value="/store/stores" />
 	<p>
-		Назад на<a href="${mainUrl}">Главный Список</a>
+		Назад на <a href="${mainUrl}">Главный Список</a>
 	</p>
 </body>
 </html>

@@ -6,13 +6,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Магазин удален</title>
 </head>
 <body>
 	<h1>Магазины</h1>
 	<p>
 		Вы удалили магазин ${city} 
-		<%=new java.util.Date()%></p>
+		</p>
 
 	<c:url var="mainUrl" value="/store/stores" />
 	<p>

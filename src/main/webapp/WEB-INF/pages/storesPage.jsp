@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Магазины</title>
 </head>
 <body>
 	<h1>Магазины</h1>
@@ -36,7 +36,7 @@
 		</tbody>
 	</table>
 	<c:if test="${empty stores}">
-There are currently no stores in the list. <a href="${addUrl}">Add</a> a store.
+На данный момент в списке нет магазинов. <a href="${addUrl}">Добавить</a> магазин.
 </c:if>
 </body>
 </html>
