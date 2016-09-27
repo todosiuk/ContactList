@@ -20,10 +20,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class Department implements Serializable{
 
-	/**
-	 * Класс представляет сущность "Департамент"
-	 * Содержит поля id, имя департамента (числовое значение от 10 до 100 (10,20,30 и тд), e-mail, должность сотрудника и телефон.
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id

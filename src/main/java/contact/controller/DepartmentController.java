@@ -12,12 +12,6 @@ import contact.entity.Department;
 import contact.service.DepartmentServiceImpl;
 import contact.service.StoreServiceImpl;
 
-/**
- *  онтроллер обрабатывает запросы от департаментов.
- * 
- * @author todosuk
- *
- */
 @Controller
 @RequestMapping("/dep")
 public class DepartmentController {
@@ -27,13 +21,6 @@ public class DepartmentController {
 	@Autowired
 	private DepartmentServiceImpl depService;
 
-	/**
-	 * ћетод возвращает страницу с формой дл€ создани€ нового департамента.
-	 * 
-	 * @param storeId
-	 * @param model
-	 * @return
-	 */
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String getAdd(@RequestParam(value = "id", required = true) Integer storeId, Model model) {
 		Department department = new Department();
@@ -42,13 +29,6 @@ public class DepartmentController {
 		return "addDepartmentPage";
 	}
 
-	/**
-	 * ћетод добавл€ет новый департамент.
-	 * 
-	 * @param storeId
-	 * @param department
-	 * @return
-	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String postAdd(@RequestParam(value = "id", required = true) Integer storeId,
 			@ModelAttribute("departmentAttribute") Department department) {
@@ -56,26 +36,12 @@ public class DepartmentController {
 		return "addedDepartmentPage";
 	}
 
-	/**
-	 * ћетод удал€ет департамент по его id.
-	 * 
-	 * @param depId
-	 * @return
-	 */
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String delete(@RequestParam(value = "id", required = true) Integer depId) {
 		depService.delete(depId);
 		return "deletedDepartmentPage";
 	}
 
-	/**
-	 * ћетод возвращает страницу с формой дл€ редактировани€ департамента.
-	 * 
-	 * @param storeId
-	 * @param depId
-	 * @param model
-	 * @return
-	 */
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String getUpdate(@RequestParam(value = "storeId", required = true) Integer storeId,
 			@RequestParam("depId") Integer depId, Model model) {
@@ -86,14 +52,6 @@ public class DepartmentController {
 		return "editDepartmentPage";
 	}
 
-	/**
-	 * ћетод обновл€ет департамент.
-	 * 
-	 * @param depId
-	 * @param storeId
-	 * @param department
-	 * @return
-	 */
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public String saveUpdate(@RequestParam(value = "depId", required = true) Integer depId,
 			@RequestParam(value = "storeId", required = true) Integer storeId,

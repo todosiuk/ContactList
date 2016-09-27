@@ -29,30 +29,18 @@ public class StoreDaoImpl implements StoreDao<Store, String> {
 		this.sessionFactory = sessionFactory;
 	}
 
-	/**
-	 * Создание нового магазина
-	 */
 	public void create(Store entity) {
 		sessionFactory.getCurrentSession().save(entity);
 	}
 
-	/**
-	 * Получение всех магазинов
-	 */
 	public List<Store> read() {
 		return sessionFactory.getCurrentSession().createQuery("from Store").getResultList();
 	}
 
-	/**
-	 * Обновление конкретного магазина
-	 */
 	public void update(Store entity) {
 		sessionFactory.getCurrentSession().update(entity);
 	}
 
-	/**
-	 * Удаление магазина
-	 */
 	public void delete(Integer id) {
 		Store store = this.getStoreFromId(id);
 		if (null != store) {
@@ -60,21 +48,12 @@ public class StoreDaoImpl implements StoreDao<Store, String> {
 		}
 	}
 
-	/**
-	 * Получение магазина по его id
-	 * 
-	 * @param id
-	 * @return
-	 */
 	public Store getStoreFromId(Integer id) {
 		Store store = (Store) sessionFactory.getCurrentSession().createQuery("from Store  where id=:id")
 				.setParameter("id", id).getSingleResult();
 		return store;
 	}
 
-	/**
-	 * Получение департаментов конкретного магазина
-	 */
 	@Override
 	public List<Department> getDepartmentsForStore(Integer idstore) {
 		Store store = sessionFactory.getCurrentSession().load(Store.class, idstore);

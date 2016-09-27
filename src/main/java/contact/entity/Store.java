@@ -22,13 +22,9 @@ import org.springframework.stereotype.Component;
 public class Store implements Serializable {
 
 	public Store() {
-		
+
 	}
 
-	/**
-	 * Класс представляет сущность "Маркет".
-	 * Содержит поля id, город а также список департаментов.
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
