@@ -1,15 +1,12 @@
 package contact.service;
 
-import java.util.Collection;
 import java.util.List;
 
-import org.hibernate.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import contact.dao.DaoException;
 import contact.dao.StoreDao;
 import contact.dao.StoreDaoImpl;
 import contact.entity.Department;
@@ -22,31 +19,53 @@ public class StoreServiceImpl implements StoreService<Store, String> {
 	@Autowired
 	private StoreDao<Store, ?> storeDao;
 
-	public void create(Store entity) {
-		storeDao.create(entity);
+	public void create(Store entity) throws ServiceException {
+		try {
+			storeDao.create(entity);
+		} catch (DaoException e) {
+			throw new ServiceException(e.getMessage(), e);
+		}
 	}
 
-	public List<Store> read() {
-		return storeDao.read();
+	public List<Store> read() throws ServiceException {
+		try {
+			return storeDao.read();
+		} catch (DaoException e) {
+			throw new ServiceException(e.getMessage(), e);
+		}
 	}
 
-	public void update(Store entity) {
-		storeDao.update(entity);
+	public void update(Store entity) throws ServiceException {
+		try {
+			storeDao.update(entity);
+		} catch (DaoException e) {
+			throw new ServiceException(e.getMessage(), e);
+		}
 
 	}
 
-	public void delete(Integer id) {
-		storeDao.delete(id);
+	public void delete(Integer id) throws ServiceException {
+		try {
+			storeDao.delete(id);
+		} catch (DaoException e) {
+			throw new ServiceException(e.getMessage(), e);
+		}
 	}
 
-	public Store getStoreFromId(Integer id) {
-		return ((StoreDaoImpl) storeDao).getStoreFromId(id);
+	public Store getStoreFromId(Integer id) throws ServiceException {
+		try {
+			return ((StoreDaoImpl) storeDao).getStoreFromId(id);
+		} catch (DaoException e) {
+			throw new ServiceException(e.getMessage(), e);
+		}
 	}
 
 	@Override
-	public List<Department> getDepartmentsForStore(Integer storeId) {
-		// TODO Auto-generated method stub
-		return storeDao.getDepartmentsForStore(storeId);
+	public List<Department> getDepartmentsForStore(Integer storeId) throws ServiceException {
+		try {
+			return storeDao.getDepartmentsForStore(storeId);
+		} catch (DaoException e) {
+			throw new ServiceException(e.getMessage(), e);
+		}
 	}
-
 }

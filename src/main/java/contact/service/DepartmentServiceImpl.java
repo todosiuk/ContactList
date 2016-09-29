@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import contact.dao.StoreDao;
 import contact.dao.DepartmentDaoImpl;
+import contact.dao.DaoException;
 import contact.dao.DepartmentDao;
 import contact.entity.Department;
 
@@ -18,26 +19,46 @@ public class DepartmentServiceImpl implements DepartmentService<Department, Stri
 	@Autowired
 	private DepartmentDao<Department, ?> departmentDao;
 
-	public void create(Integer storeId, Department entity) {
-		departmentDao.create(storeId, entity);
+	public void create(Integer storeId, Department entity) throws ServiceException {
+		try {
+			departmentDao.create(storeId, entity);
+		} catch (DaoException e) {
+			throw new ServiceException(e.getMessage(), e);
+		}
 	}
 
-	public List<Department> read(Integer id) {
-		return departmentDao.read();
+	public List<Department> read(Integer id) throws ServiceException {
+		try {
+			return departmentDao.read();
+		} catch (DaoException e) {
+			throw new ServiceException(e.getMessage(), e);
+		}
 	}
 
-	public void update(Department entity) {
-		departmentDao.update(entity);
+	public void update(Department entity) throws ServiceException {
+		try {
+			departmentDao.update(entity);
+		} catch (DaoException e) {
+			throw new ServiceException(e.getMessage(), e);
+		}
 
 	}
 
-	public void delete(Integer id) {
-		departmentDao.delete(id);
+	public void delete(Integer id) throws ServiceException {
+		try {
+			departmentDao.delete(id);
+		} catch (DaoException e) {
+			throw new ServiceException(e.getMessage(), e);
+		}
 
 	}
 
-	public Department getDepartmentFromId(Integer id) {
-		return (Department) ((DepartmentDaoImpl) departmentDao).getDepartmentFromId(id);
+	public Department getDepartmentFromId(Integer id) throws ServiceException {
+		try {
+			return (Department) ((DepartmentDaoImpl) departmentDao).getDepartmentFromId(id);
+		} catch (DaoException e) {
+			throw new ServiceException(e.getMessage(), e);
+		}
 	}
 
 	public StoreDao<Department, ?> getDepartmentDao() {
