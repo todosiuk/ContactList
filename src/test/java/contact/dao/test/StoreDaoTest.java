@@ -11,7 +11,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import contact.dao.DaoException;
+import contact.dao.DepartmentDaoImpl;
 import contact.dao.StoreDaoImpl;
+import contact.entity.Department;
 import contact.entity.Store;
 
 @ContextConfiguration(locations = "classpath:applicationContextTest.xml")
@@ -20,6 +22,9 @@ public class StoreDaoTest {
 
 	@Autowired
 	private StoreDaoImpl storeDao;
+
+	@Autowired
+	private DepartmentDaoImpl depDao;
 
 	@Test
 	@Transactional
@@ -53,7 +58,29 @@ public class StoreDaoTest {
 		List<Store> stores = storeDao.read();
 		Assert.assertEquals(0, stores.size());
 	}
-	
-	
+
+	@Test
+	@Transactional
+	@Rollback(true)
+	public void testGetStoreFromId() throws DaoException {
+		Store store = new Store("K-1");
+		storeDao.create(store);
+		List<Store> stores = storeDao.read();
+		storeDao.getStoreFromId(store.getId());
+		Assert.assertEquals(store.getId(), stores.get(0).getId());
+	}
+
+	@Test
+	@Transactional
+	@Rollback(true)
+	public void testGetDepartmentsForStore() throws DaoException {
+		Store store = new Store("K-1");
+		storeDao.create(store);
+		Department department = new Department(10, "hgf@ukr.net", "financier", "097-589-65-89", store);
+		int storeId = store.getId();
+		depDao.create(storeId, department);
+		List<Department> depForStore = storeDao.getDepartmentsForStore(storeId);
+		Assert.assertEquals(store.getId(), depForStore.get(0).getStore().getId());
+	}
 
 }
