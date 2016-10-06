@@ -31,7 +31,7 @@ public class StoreDaoImpl implements StoreDao<Store, String> {
 
 	public void create(Store entity) throws DaoException {
 		try {
-			sessionFactory.getCurrentSession().save(entity);
+			sessionFactory.getCurrentSession().saveOrUpdate(entity);
 		} catch (Exception e) {
 			throw new DaoException("exception in StoreDaoImpl create", e);
 		}
@@ -94,4 +94,5 @@ public class StoreDaoImpl implements StoreDao<Store, String> {
 		}
 
 	}
+
 }
