@@ -12,9 +12,28 @@ http://www.springframework.org/schema/context
  http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
 	<context:component-scan base-package="contact" />
-	
+
 	<tx:annotation-driven proxy-target-class="true"
 		transaction-manager="transactionManager" />
+
+	<bean id="depService" name="depService" class="org.mockito.Mockito"
+		factory-method="mock">
+		<constructor-arg value="contact.service.DepartmentServiceImpl" />
+	</bean>
+
+	<bean id="storeService" name="storeService" class="org.mockito.Mockito"
+		factory-method="mock">
+		<constructor-arg value="contact.service.StoreServiceImpl" />
+	</bean>
+
+	<!-- <bean id="depDao" name="depDao" class="org.mockito.Mockito"
+		factory-method="mock">
+		<constructor-arg value="contact.dao.DepartmentDaoImpl" />
+	</bean>
+	<bean id="storeDao" name="storeDao" class="org.mockito.Mockito"
+		factory-method="mock">
+		<constructor-arg value="contact.dao.StoreDaoImpl" />
+	</bean>-->
 
 	<bean id="myDataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
