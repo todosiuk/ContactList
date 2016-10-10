@@ -12,9 +12,15 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.RequestBuilder;
+import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
+
 import static org.mockito.BDDMockito.*;
 import contact.controller.StoreController;
+import contact.dto.StoreDTO;
 import contact.entity.Store;
 import contact.service.StoreServiceImpl;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -22,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.hamcrest.Matchers.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:applicationContext-test.xml","spring-mvc-test.xml"  })
+@ContextConfiguration(locations = { "classpath:applicationContext-test.xml", "spring-mvc-test.xml" })
 public class StoreControllerTest {
 
 	@InjectMocks
@@ -37,7 +43,6 @@ public class StoreControllerTest {
 	public void setup() {
 		MockitoAnnotations.initMocks(this);
 		mockMvc = MockMvcBuilders.standaloneSetup(storeController).build();
-		given(this.storeService.getStoreFromId(1)).willReturn(new Store("Lviv"));
 	}
 
 	@Test
@@ -74,12 +79,15 @@ public class StoreControllerTest {
 		Integer id = 1;
 		storeService.delete(id);
 		Mockito.verify(storeService).delete(id);
+		this.mockMvc.perform(get("/store/stores/delete").param("id", id.toString())).andExpect(status().isOk())
+				.andExpect(view().name("deletedStorePage"));
 	}
 
 	@Test
 	public void testGetUpdate() throws Exception {
-		this.mockMvc.perform(get("/store/stores/edit", 1)).andExpect(status().is(400)).andExpect(view().name("editStorePage"))
-		.andExpect(model().attributeExists("storeAttribute"));
+		Integer id = 1;
+		this.mockMvc.perform(get("/store/stores/edit").param("id", id.toString())).andExpect(status().isOk())
+				.andExpect(view().name("editStorePage"));
 	}
 
 	@Test
@@ -89,8 +97,19 @@ public class StoreControllerTest {
 		store.setCity("K-1");
 		storeService.create(store);
 		store.setId(1);
+		store.setCity("Lviv");
 		storeService.update(store);
 		Mockito.verify(storeService).update(store);
+		this.mockMvc.perform(post("/store/stores/edit").param("id", store.getId().toString()))
+				.andExpect(status().isOk()).andExpect(view().name("editedStorePage"))
+				.andExpect(model().attributeExists("id"));
+	}
+
+	@Test
+	public void testGetDepForStore() throws Exception {
+		Integer storeId = 1;
+		this.mockMvc.perform(get("/store/stores/record").param("id", storeId.toString())).andExpect(status().isOk())
+				.andExpect(view().name("records")).andExpect(model().attributeExists("stores"));
 	}
 
 }
