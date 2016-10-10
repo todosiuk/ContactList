@@ -71,6 +71,6 @@ public class StoreController {
 		dto.setDepList(storeService.getDepartmentsForStore(storeId));
 		storeDTO.add(dto);
 		model.addAttribute("stores", storeDTO);
-		return "record";
+		return "records";
 	}
 }
