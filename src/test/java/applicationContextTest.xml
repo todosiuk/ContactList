@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
@@ -9,7 +9,9 @@
 http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
 http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
 http://www.springframework.org/schema/context 
- http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+ http://www.springframework.org/schema/context/spring-context-4.3.xsd
+ http://www.springframework.org/schema/jdbc
+ http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd">
 
 	<context:component-scan base-package="contact" />
 
@@ -26,21 +28,12 @@ http://www.springframework.org/schema/context
 		<constructor-arg value="contact.service.StoreServiceImpl" />
 	</bean>
 
-	<!-- <bean id="depDao" name="depDao" class="org.mockito.Mockito"
-		factory-method="mock">
-		<constructor-arg value="contact.dao.DepartmentDaoImpl" />
-	</bean>
-	<bean id="storeDao" name="storeDao" class="org.mockito.Mockito"
-		factory-method="mock">
-		<constructor-arg value="contact.dao.StoreDaoImpl" />
-	</bean>-->
-
 	<bean id="myDataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/contact" />
-		<property name="username" value="root" />
-		<property name="password" value="root" />
+		<property name="driverClassName" value="org.h2.Driver" />
+		<property name="url" value="jdbc:h2:tcp://localhost/~/contact" />
+		<property name="username" value="sa" />
+		<property name="password" value="" />
 	</bean>
 
 	<bean id="mySessionFactory"
@@ -56,9 +49,10 @@ http://www.springframework.org/schema/context
 
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.dialect"> org.hibernate.dialect.H2Dialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hbm2ddl.auto">create</prop>
+				<prop key="hibernate.temp.use_jdbc_metadata_defaults">false</prop>
 			</props>
 		</property>
 	</bean>
@@ -67,7 +61,5 @@ http://www.springframework.org/schema/context
 		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
 		<property name="sessionFactory" ref="mySessionFactory" />
 	</bean>
-
-
 
 </beans>
