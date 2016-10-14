@@ -28,7 +28,7 @@ public class DepartmentDaoImpl implements DepartmentDao<Department, String> {
 			department.setStore(store);
 			sessionFactory.getCurrentSession().save(department);
 		} catch (Exception e) {
-			throw new DaoException("exception in DepartmentDaoImpl create", e);
+			throw new DaoException("exception in DepartmentDaoImpl, method create", e);
 		}
 	}
 
@@ -36,7 +36,7 @@ public class DepartmentDaoImpl implements DepartmentDao<Department, String> {
 		try {
 			return sessionFactory.getCurrentSession().createQuery("from Department").getResultList();
 		} catch (Exception e) {
-			throw new DaoException("exception in DepartmentDaoImpl read", e);
+			throw new DaoException("exception in DepartmentDaoImpl, method read", e);
 		}
 	}
 
@@ -49,7 +49,7 @@ public class DepartmentDaoImpl implements DepartmentDao<Department, String> {
 			department.setPost(entity.getPost());
 			sessionFactory.getCurrentSession().saveOrUpdate(department);
 		} catch (Exception e) {
-			throw new DaoException("exception in DepartmentDaoImpl update", e);
+			throw new DaoException("exception in DepartmentDaoImpl, method update", e);
 		}
 	}
 
@@ -58,7 +58,7 @@ public class DepartmentDaoImpl implements DepartmentDao<Department, String> {
 			Department department = this.getDepartmentFromId(id);
 			sessionFactory.getCurrentSession().delete(department);
 		} catch (Exception e) {
-			throw new DaoException("exception in DepartmentDaoImpl delete", e);
+			throw new DaoException("exception in DepartmentDaoImpl, method delete", e);
 		}
 	}
 
@@ -68,7 +68,7 @@ public class DepartmentDaoImpl implements DepartmentDao<Department, String> {
 					.createQuery("from Department d where d.id = :id").setParameter("id", id).getSingleResult();
 			return department;
 		} catch (Exception e) {
-			throw new DaoException("exception in DepartmentDaoImpl getDepartmentFromId", e);
+			throw new DaoException("exception in DepartmentDaoImpl, method getDepartmentFromId", e);
 		}
 	}
 }

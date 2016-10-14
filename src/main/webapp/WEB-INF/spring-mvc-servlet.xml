@@ -11,7 +11,6 @@
         http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
 	<context:component-scan base-package="contact.controller" />
-	<mvc:annotation-driven />
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass"
@@ -19,4 +18,8 @@
 		<property name="prefix" value="/WEB-INF/pages/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
+	<mvc:resources mapping="/resources/**" location="/resources/"
+	cache-period="31556926"/>
+	<mvc:annotation-driven />
+	
 </beans>
