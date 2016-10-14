@@ -12,7 +12,21 @@
 	<url>http://maven.apache.org</url>
 	<dependencies>
 
-		<!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest-all--> 
+		<!-- https://mvnrepository.com/artifact/org.webjars/bootstrap -->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>3.3.7</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.webjars/jquery -->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery</artifactId>
+			<version>3.1.1</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest-all -->
 		<dependency>
 			<groupId>org.hamcrest</groupId>
 			<artifactId>hamcrest-all</artifactId>
@@ -25,6 +39,13 @@
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 			<scope>test</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.4.192</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
@@ -55,6 +76,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<version>1.4.0.RELEASE</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.integration/spring-integration-ip -->
+		<dependency>
+			<groupId>org.springframework.integration</groupId>
+			<artifactId>spring-integration-ip</artifactId>
+			<version>4.3.1.RELEASE</version>
 		</dependency>
 
 		<!-- Jstl for jsp page -->
@@ -92,6 +120,13 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
+			<version>4.3.1.RELEASE</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
 			<version>4.3.1.RELEASE</version>
 		</dependency>
 
@@ -152,8 +187,7 @@
 		</dependency>
 
 
-		<!-- MySQL JDBC driver -->
-		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+		<!-- MySQL JDBC driver https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -198,17 +232,18 @@
 		<finalName>ContactList</finalName>
 		<pluginManagement>
 			<plugins>
+
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>3.1</version>
 					<configuration>
-					 <compilerVersion>1.8</compilerVersion>
+						<compilerVersion>1.8</compilerVersion>
 						<source>1.8</source>
 						<target>1.8</target>
 					</configuration>
-					
 				</plugin>
+
 				<plugin>
 					<groupId>org.apache.tomcat.maven</groupId>
 					<artifactId>tomcat7-maven-plugin</artifactId>

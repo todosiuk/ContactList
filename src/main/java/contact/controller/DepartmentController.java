@@ -53,7 +53,7 @@ public class DepartmentController {
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public String saveUpdate(@RequestParam(value = "depId", required = true) Integer depId,
+	public String postUpdate(@RequestParam(value = "depId", required = true) Integer depId,
 			@RequestParam(value = "storeId", required = true) Integer storeId,
 			@ModelAttribute("departmentAttribute") Department department) {
 		department.setId(depId);

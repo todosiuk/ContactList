@@ -12,15 +12,9 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.RequestBuilder;
-import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
-
 import static org.mockito.BDDMockito.*;
 import contact.controller.StoreController;
-import contact.dto.StoreDTO;
 import contact.entity.Store;
 import contact.service.StoreServiceImpl;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -28,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.hamcrest.Matchers.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:applicationContext-test.xml", "spring-mvc-test.xml" })
+@ContextConfiguration(locations = { "classpath:applicationContextTest.xml", "spring-mvc-test.xml" })
 public class StoreControllerTest {
 
 	@InjectMocks

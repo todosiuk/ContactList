@@ -34,8 +34,8 @@ public class StoreController {
 	}
 
 	@RequestMapping(value = "/stores/add", method = RequestMethod.POST)
-	public String postAdd(@ModelAttribute("storeAttribute") Store store) {
-		storeService.create(store);
+	public String postAdd(@ModelAttribute("storeAttribute") Store store) {	
+		storeService.create(store);	
 		return "addedStorePage";
 	}
 

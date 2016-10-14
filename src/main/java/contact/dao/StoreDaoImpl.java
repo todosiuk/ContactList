@@ -33,7 +33,7 @@ public class StoreDaoImpl implements StoreDao<Store, String> {
 		try {
 			sessionFactory.getCurrentSession().saveOrUpdate(entity);
 		} catch (Exception e) {
-			throw new DaoException("exception in StoreDaoImpl create", e);
+			throw new DaoException("exception in StoreDaoImpl, method create", e);
 		}
 	}
 
@@ -41,7 +41,7 @@ public class StoreDaoImpl implements StoreDao<Store, String> {
 		try {
 			return sessionFactory.getCurrentSession().createQuery("from Store").getResultList();
 		} catch (Exception e) {
-			throw new DaoException("exception in StoreDaoImpl read", e);
+			throw new DaoException("exception in StoreDaoImpl, method read", e);
 		}
 	}
 
@@ -49,7 +49,7 @@ public class StoreDaoImpl implements StoreDao<Store, String> {
 		try {
 			sessionFactory.getCurrentSession().update(entity);
 		} catch (Exception e) {
-			throw new DaoException("exception in StoreDaoImpl update", e);
+			throw new DaoException("exception in StoreDaoImpl, method update", e);
 		}
 	}
 
@@ -60,7 +60,7 @@ public class StoreDaoImpl implements StoreDao<Store, String> {
 				sessionFactory.getCurrentSession().delete(store);
 			}
 		} catch (Exception e) {
-			throw new DaoException("exception in StoreDaoImpl delete", e);
+			throw new DaoException("exception in StoreDaoImpl, method delete", e);
 		}
 
 	}
@@ -71,7 +71,7 @@ public class StoreDaoImpl implements StoreDao<Store, String> {
 					.setParameter("id", id).getSingleResult();
 			return store;
 		} catch (Exception e) {
-			throw new DaoException("exception in StoreDaoImpl getStoreFromId", e);
+			throw new DaoException("exception in StoreDaoImpl, method getStoreFromId", e);
 		}
 	}
 
@@ -90,9 +90,7 @@ public class StoreDaoImpl implements StoreDao<Store, String> {
 			});
 			return departments;
 		} catch (Exception e) {
-			throw new DaoException("exception in StoreDaoImpl getDepartmentsForStore ", e);
+			throw new DaoException("exception in StoreDaoImpl, method getDepartmentsForStore ", e);
 		}
-
 	}
-
 }
